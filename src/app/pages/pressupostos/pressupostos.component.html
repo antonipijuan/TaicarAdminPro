@@ -1,0 +1,170 @@
+<div class="row animated fadeIn">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <!-- <label for="typeahead-basic">Usuaris:</label> -->
+                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" (selectItem)="selectedItem($event)" placeholder="Cerca client ..." [ngbTypeahead]="search" />
+                <!-- <input #input (keyup)="buscarPersona( input.value )" type="text" class="form-control" placeholder="Buscar usuario..."> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button (click)="open(content)" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                            <i class="fa fa-plus"></i> 
+                            Crea Pressupost
+                          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row animated fadeIn" *ngIf="!carregant">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <select2 [data]="exampleData" [cssImport]=true></select2>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button (click)="open(content)" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                            <i class="fa fa-plus"></i> 
+                            Crea Pressupost
+                          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Pressupostos: ( <small> {{ _pressupostosService.totalPressupostos }} </small> )</h3>
+                <div class="custom-control custom-checkbox mr-sm-2 m-b-15">
+                    <input type="checkbox" (change)="changed($event)" class="custom-control-input" id="checkbox0" value="check">
+                    <label class="custom-control-label" for="checkbox0">Visualitza tots els pressupostos</label>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Data</th>
+                            <th>Vigència</th>
+                            <th>Client</th>
+                            <th>Preu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let pressupost of pressupostos">
+                            <td>
+                                {{ pressupost.num }}
+                            </td>
+                            <td>
+                                {{ pressupost.data | data}}
+                            </td>
+                            <td>
+                                {{ pressupost.data_vigencia | data}}
+                            </td>
+                            <td>
+                                {{ pressupost.client.nombre }}
+                            </td>
+                            <td>
+                                {{ pressupost.preu_net }}
+                            </td>
+                            <td>
+                                <span [class]="obteniretiquetaFormulari(pressupost.estat)">{{ pressupost.estat }}</span>
+                            </td>
+                            <td class="text-nowrap">
+                                <button [routerLink]="['/pressupost', pressupost._id , '' ]" class="btn btn-sm btn-success" type="button">Edita</button>
+                                <button class="btn btn-sm btn-danger" (click)="borrarPressupost( pressupost._id)" type="button">Esborra</button>
+                                <!-- <button *ngIf="pressupost.estat == 'vigent' " class="btn btn-sm btn-danger" (click)="borrarPressupost( pressupost._id)" type="button">Esborra</button> -->
+                                <!-- <a [routerLink]="['/pressupost', pressupost._id , '' ]" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a *ngIf="pressupost.estat == 'vigent' " (click)="borrarPressupost( pressupost._id )" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                                <a *ngIf="pressupost.estat == 'vigent' " (click)="anularPressupost( pressupost._id )" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-cc-amex text-danger"></i> </a> -->
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crea Pressupost</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Client</label>
+                <input #input (keyup)="buscarClient( input.value )" type="text" class="form-control" placeholder="Buscar client..."></div>
+
+        </form>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="card-title">Clients: ( <small> {{ _personesService.totalPersones }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>dni</th>
+                            <th>Nom i cognoms</th>
+                            <th>Poblacio</th>
+                            <th>E-mail</th>
+                            <th>Telèfon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients">
+                            <td>
+                                {{ client.dni }}
+                            </td>
+                            <td>
+                                {{ client.nombre }}
+                            </td>
+                            <td>
+                                {{ client.poblacio }}
+                            </td>
+                            <td>
+                                {{ client.email }}
+                            </td>
+                            <td>
+                                {{ client.telefon }}
+                            </td>
+                            <td>
+                                <button [routerLink]="['/pressupost', 'nuevo', client._id ]" (click)="modal.close('Save click')" class="btn btn-primary">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

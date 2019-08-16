@@ -1,0 +1,135 @@
+<div class="row animated fadeIn">
+
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Vehicle: {{ vehicle.nom }} - {{ vehicle.matricula }} - {{ vehicle._id }}</h3>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarVehicle(f)">
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input [(ngModel)]="vehicle.nom" name="nom" type="text" class="form-control" placeholder="Nom ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Marca del vehicle</label>
+                            <!-- <input [(ngModel)]="vehicle.marca" name="nombre" type="text" class="form-control" placeholder="Marca ...." required> -->
+                            <select [(ngModel)]="vehicle.marca" name="marca" class="form-control" required>
+                                    <option value="Wolkswagen">Wolkswagen</option>
+                                    <option value="Seat">Seat</option>
+                                    <option value="Audi">Audi</option>
+                                    <option value="Mercedes">Mercedes</option>
+                                    <option value="Toyota">Toyota</option>
+                               </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Model del vehicle</label>
+                            <select [(ngModel)]="vehicle.model" name="model" class="form-control" required>
+                                    <option value="Golf">Golf</option>
+                                    <option value="Ibiza">Ibiza</option>
+                                    <option value="A4">A4</option>
+                                    <option value="E400">E400</option>
+                                    <option value="Corolla">Corolla</option>
+                               </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <select [(ngModel)]="vehicle.color" name="color" class="form-control" required>
+                                    <option value="red">Red</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="yellow">Yellow</option>
+                               </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Data d'adquisició</label>
+                            <input [(ngModel)]="vehicle.data_adquisicio" name="data_adquisicio" type="date" class="form-control" placeholder="Data adquisició ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Matrícula</label>
+                            <input [(ngModel)]="vehicle.matricula" name="matricula" type="text" class="form-control" placeholder="Matricula ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Places</label>
+                            <input [(ngModel)]="vehicle.places" name="places" type="number" class="form-control" placeholder="Places ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Classificacio</label>
+                            <input [(ngModel)]="vehicle.classificacio" name="classificacio" type="text" class="form-control" placeholder="Classificacio ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Observacions</label>ng se
+                            <input [(ngModel)]="vehicle.observacions" name="observacions" type="text" class="form-control" placeholder="Observacions ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preu Temporada Extra</label>
+                            <input [(ngModel)]="vehicle.temporada_extra" name="temporada_extra" type="number" class="form-control" placeholder="Places ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preu Temporada Alta</label>
+                            <input [(ngModel)]="vehicle.temporada_alta" name="temporada_alta" type="number" class="form-control" placeholder="Places ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preu Temporada Mitja</label>
+                            <input [(ngModel)]="vehicle.temporada_mitja" name="temporada_mitja" type="number" class="form-control" placeholder="Places ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preu Temporada Baixa</label>
+                            <input [(ngModel)]="vehicle.temporada_baixa" name="temporada_baixa" type="number" class="form-control" placeholder="Places ..." required>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label>Hospital</label>
+                            <select (change)="cambioHospital( $event.target.value )" [(ngModel)]="medico.hospital" name="hospital" class="form-control" required>
+                            <option value="">Seleccione Hospital</option>
+                            <option *ngFor="let hospital of hospitales" [value]="hospital._id">
+                              {{ hospital.nombre }}
+                            </option>
+                          </select>
+
+                        </div> -->
+
+
+
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Guardar
+                      </button>
+                        <a routerLink="/vehicles" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3" *ngIf="vehicle._id">
+        <div class="card card-body">
+            <h4 class="box-title m-b-0">Fotografía</h4>
+
+            <img (click)="cambiarFoto()" [src]="vehicle.img | imagen:'vehicle'" class="img-circle img-fluid pointer">
+            <div class="row">
+                <button type="button" (click)="creaCalendari()" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Crear calendari reserves 2018
+                </button>
+                <button type="button" (click)="esborraCalendari()" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Esborrar calendari reserves 2018
+                </button>
+            </div>
+            <div class="row">
+                <button type="button" (click)="creaCalendari2019()" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Crear calendari reserves 2019
+                </button>
+                <button type="button" (click)="esborraCalendari2019()" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Esborrar calendari reserves 2019
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

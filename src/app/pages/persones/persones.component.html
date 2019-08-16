@@ -1,0 +1,97 @@
+<!-- <div class="row animated fadeIn">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                 <label for="typeahead-basic">Usuaris:</label> Usuaris
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Usuaris registrats: ( <small>{{ _personaService.totalPersones }}</small> )</h3>
+                <div class="text-right">
+                    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
+                    <button [routerLink]="['/persona','nuevo','null']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                    <i class="fa fa-plus"></i> 
+                    Crear Persona
+                  </button>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>dni</th>
+                            <th>Nom</th>
+                            <th>Poblacio</th>
+                            <th>Edita</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let persona of persones">
+                            <!-- <td class="w70">
+                                <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                            </td> -->
+                            <td>{{ persona.dni }}</td>
+                            <td>{{ persona.nombre }}</td>
+                            <td> {{ persona.poblacio }} </td>
+
+                            <td>
+                                <button [routerLink]="['/persona', persona._id, 'null' ]" class="btn btn-sm btn-success">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+
+                                <button (click)="borrarPersona( persona )" class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                              </button>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+                <button class="btn btn-secondary">
+                Anteriores
+              </button>
+
+                <button class="btn btn-secondary">
+                  Siguientes
+              </button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

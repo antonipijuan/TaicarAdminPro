@@ -1,0 +1,138 @@
+<div class="row animated fadeIn">
+
+    <div class="col-sm-12 col-xs-12">
+        <!-- <div class="card card-body">
+            <h3 class="box-title m-b-0">Persona: {{ persona.nombre }}</h3>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarPersona(f)">
+                        <div class="form-group">
+                            <label>Dni:</label>
+                            <input [(ngModel)]="persona.dni" name="dni" type="text" class="form-control" placeholder="Dni de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomb:</label>
+                            <input [(ngModel)]="persona.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Poblacio</label>
+                            <input [(ngModel)]="persona.poblacio" name="poblacio" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Direcció</label>
+                            <input [(ngModel)]="persona.direccio" name="direccio" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Data naixement</label>
+                            <input [(ngModel)]="persona.data_naixement" name="data_naixement" type="date" class="form-control" placeholder="Poblacio de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Observacions</label>
+                            <textarea [(ngModel)]="persona.observacions" name="observacions" class="form-control" rows="5" placeholder="Observacions ..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Guardar
+                      </button>
+                        <a routerLink="/persones" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="m-b-0 text-white">Clients</h4>
+            </div>
+            <div class="card-body">
+                <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarPersona(f)">
+                    <div class="form-body">
+                        <h3 class="card-title">Dades Personals</h3>
+                        <hr>
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Dni</label>
+                                    <input [(ngModel)]="persona.dni" name="dni" type="text" class="form-control" placeholder="Dni de lusuari" required>
+                                    <small class="form-control-feedback"> This is inline help </small> </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Nom i cognoms</label>
+                                    <input [(ngModel)]="persona.nombre" name="nombre" type="text" class="form-control" placeholder="Nom i cognoms del client ..." required>
+                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Mail</label>
+                                    <input [(ngModel)]="persona.email" name="email" type="text" class="form-control" placeholder="Email del client ..." required>
+                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Teèfon</label>
+                                    <input [(ngModel)]="persona.telefon" name="telefon" type="text" class="form-control" placeholder="Telèfon del client ..." required>
+                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Data de naixement</label>
+                                    <input [(ngModel)]="persona.data_naixement" name="data_naixement" type="date" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+
+                        <!--/row-->
+                        <h3 class="box-title m-t-40">Adreça</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label>Direcció</label>
+                                    <input [(ngModel)]="persona.direccio" name="direccio" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Població</label>
+                                    <input [(ngModel)]="persona.poblacio" name="poblacio" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div> -->
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Observacions</label>
+                                    <textarea [(ngModel)]="persona.observacions" name="observacions" class="form-control" rows="5" placeholder="Observacions ..."></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                            <i class="fa fa-save"></i> Guardar
+                        </button>
+                        <a routerLink="/persones" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

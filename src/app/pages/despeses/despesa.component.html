@@ -1,0 +1,51 @@
+<div class="row" *ngIf="!carregant">
+
+    <!-- <form class="form-horizontal m-t-40 " #f2="ngForm " ngNativeValidate (ngSubmit)="guardaPressupost(pressupost) "> -->
+    <div class="col-md-6">
+        <div class="card card-body printableArea">
+            <form class="form-horizontal m-t-40" #hero2Form="ngForm" ngNativeValidate (ngSubmit)="guardaDespesa( despesa )">
+                <div class="form-group">
+                    <label for="vehicle">Vehicle</label>
+                    <select [(ngModel)]="despesa.vehicle" id="vehicle" name="vehicle" class="form-control" required>
+                    <option value=" ">Seleccione Vehicle</option>
+                    <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
+                      {{ vehicle.nom }} - {{ vehicle.marca }} {{ vehicle.model }}
+                    </option>
+                  </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="despesa.data" class="control-label">Data de despesa</label>
+                    <input [(ngModel)]="despesa.data" id="despesa.data" name="despesa.data" type="date" class="form-control" required>
+                    <!-- <label>Data</label>
+                    <input type="date" [(ngModel)]="despesa.data" name="data" class="form-control"> -->
+                </div>
+                <div class="form-group">
+                    <label for="preu">Import</label>
+                    <input type="number" [(ngModel)]="despesa.preu" id="preu" name="preu" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Tipus</label>
+                    <select [(ngModel)]="despesa.tipus" name="tipus" class="form-control" required>
+                    <option value="">Seleccioneu tipus de despesa</option>
+                    <option value="Reparació">Reparació</option>
+                    <option value="Manteniment">Manteniment</option>
+                    <option value="Adquisició">Adquisició</option>
+                    <option value="Combustible">Combustible</option>
+                    
+                  </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="observacions">Observacions</label>
+                    <textarea class="form-control" [(ngModel)]="despesa.observacions" name="observacions" id="observacins" rows="5"></textarea>
+                </div>
+
+                <button class="btn btn-success" (click)="guardaDespesa(despesa)" type="button"> Guarda </button>
+                <button class="btn btn-warning" type="button" [routerLink]="['/despeses']"> Tanca </button>
+            </form>
+        </div>
+    </div>
+
+
+</div>

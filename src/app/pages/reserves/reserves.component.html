@@ -1,0 +1,123 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #input (keyup)="buscarVehicles( input.value )" type="text" class="form-control" placeholder="Buscar vehicles...">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <!-- <button [routerLink]="['/reserva','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                  <i class="fa fa-plus"></i> 
+                  Crear Reserva
+                </button> -->
+                </div>
+                <h3 class="card-title">Vehicles ( <small> {{ _vehiclesService.totalVehicles }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Matricula</th>
+                            <th>Nom</th>
+                            <th>Matricula</th>
+                            <th>Marca</th>
+                            <th>Model</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vehicle of vehicles">
+
+                            <td>
+                                {{ vehicle._id }}
+                            </td>
+                            <td>
+                                {{ vehicle.nom }}
+                            </td>
+                            <td>
+                                {{ vehicle.matricula }}
+                            </td>
+                            <td>
+                                {{ vehicle.marca }}
+                            </td>
+                            <td>
+                                {{ vehicle.model }}
+                            </td>
+                            <td>
+                                <div class="col-lg-2 col-md-4">
+                                    <button (click)="buscarReserves(vehicle._id)" type="button" class="btn btn-rounded btn-block btn-info">+</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button [routerLink]="['/reserva','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                  <i class="fa fa-plus"></i> 
+                  Crear Reserva
+                </button>
+                </div>
+                <h3 class="card-title">Reserves registrados ( <small> {{ _reservaService.totalReserves }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Pressupost</th>
+                            <th>Vehicle</th>
+                            <th>Data Inici</th>
+                            <th>Data Fi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let reserva of reserves">
+
+                            <td>
+                                {{ reserva.pressupost['_id'] }}
+                            </td>
+                            <td>
+                                {{ reserva.vehicle['matricula'] }}
+                            </td>
+                            <td>
+                                {{ reserva.data_inicial }}
+                            </td>
+                            <td>
+                                {{ reserva.data_final }}
+                            </td>
+                            <td>
+                                <button [routerLink]="['/reserva', reserva._id ]" class="btn btn-primary">
+                              <i class="fa fa-edit"></i>
+                            </button>
+
+                                <button (click)="borrarReserva( reserva )" class="btn btn-danger">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

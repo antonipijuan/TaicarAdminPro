@@ -1,0 +1,73 @@
+<div class="row animated fadeIn" *ngIf="!carregant">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button [routerLink]="['/pagament','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                                <i class="fa fa-plus"></i> 
+                                Crea Pagament
+                              </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!carregant">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Pagaments: ( <small> {{ totalPagaments }} </small> )</h3>
+                <!-- <div class="custom-control custom-checkbox mr-sm-2 m-b-15">
+                  <input type="checkbox" (change)="changed($event)" class="custom-control-input" id="checkbox0" value="check">
+                  <label class="custom-control-label" for="checkbox0">Visualitza tots els pagaments</label>
+              </div> -->
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Client</th>
+                            <th>Data</th>
+                            <th>Factura</th>
+                            <th>Num Fact</th>
+                            <th>Import</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let pagament of pagaments">
+                            <td>
+                                {{ pagament._id }}
+                            </td>
+                            <td>
+                                {{ pagament.client['nombre'] }}
+                            </td>
+                            <td>
+                                {{ pagament.data_pagament | data}}
+                            </td>
+                            <td>
+                                {{ pagament.factura['_id']}}
+                            </td>
+                            <td>
+                                {{ pagament.factura['num']}}
+                            </td>
+                            <td>
+                                {{ pagament.import_pagat }}
+                            </td>
+                            <td>
+                                <!-- <span [class]="obteniretiquetaFormulari(pressupost.estat)">{{ pressupost.estat }}</span> -->
+                            </td>
+                            <td class="text-nowrap">
+                                <button [routerLink]="['/pagament', pagament._id ]" class="btn btn-sm btn-success" type="button">Edita</button>
+                                <button class="btn btn-sm btn-danger" (click)="borrarPagament( pagament._id)" type="button">Esborra</button>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

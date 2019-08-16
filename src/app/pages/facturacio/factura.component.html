@@ -1,0 +1,203 @@
+<div *ngIf="!carregant" class="row">
+    <div class="col-md-8">
+        <div class="card card-body printableArea">
+            <h3><b>FACTURA</b> <span class="pull-right">{{ factura.num }} </span></h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-left">
+                        <div class="m-t-30">
+                            <img src="../assets/images/CAR_logo.jpg" class="img-circle" width="400">
+                        </div>
+                        <address>
+                            <h3> &nbsp;<b class="text-danger">Caravaning LLEIDA S.L.</b></h3>
+                            <p class="text-muted m-l-5">Av. Bell-lloc, 17,
+                                <br> Bellvís (Lleida) - 25142
+                                <br> www.caravaninglleida.com
+                                <br> </p>
+                        </address>
+                    </div>
+                    <div class="pull-right text-right">
+                        <address>
+                            <h3>To,</h3>
+                            <h4 class="font-bold">{{ factura.client['nombre'] }}</h4>
+                            <p class="text-muted m-l-30">
+                                <br> Carrer Migdia 7A, 2A
+                                <br> 
+                                <br> Mollerussa (Lleida) - 25230</p>
+                            <p class="m-t-30"><b>Data de factura :</b> <i class="fa fa-calendar"></i> 13 d'octubre de 2018</p>
+                            <p><b>Data de venciment :</b> <i class="fa fa-calendar"></i> 24 Oct 2018</p>
+                            <p><b>Pendent de pagament :</b> {{ factura.pendent_pagament }}</p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive m-t-40" style="clear: both;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center ">#</th>
+                                    <th>Vehicle</th>
+                                    <th class="text-right ">Data Inicial</th>
+                                    <th class="text-right ">Data Final</th>
+                                    <th class="text-right ">Temporada</th>
+                                    <th class="text-right ">Dies</th>
+                                    <th class="text-right ">Preu</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of factures_detall; let i=index">
+                                    <td class="text-center ">{{ i }}</td>
+                                    <td>{{item.vehicle['nom']}} / {{item.vehicle['matricula']}}</td>
+                                    <td class="text-right ">{{item.data_inicial}} </td>
+                                    <td class="text-right ">{{item.data_final}} </td>
+                                    <td class="text-right ">{{item.temporada}} </td>
+                                    <td class="text-right ">{{item.dies}} </td>
+                                    <td class="text-right ">{{item.preu}} </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="pull-right m-t-30 text-right">
+                        <p>Sub - Total factura: {{factura.preu_brut}}</p>
+                        <p>vat (21%) : {{ (factura.preu_brut * 21)/100 }} </p>
+                        <hr>
+                        <h3><b>Total :</b> {{ factura.preu_net }}</h3>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="text-right">
+                        <button class="btn btn-danger" type="submit"> Proceed to payment </button>
+                        <button class="btn btn-info" [routerLink]="['/facturacio']"> Tanca </button>
+                        <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><span class="lstick"></span>Dades Factura</h4>
+                    <table class="table vm font-14 m-b-0">
+                        <tbody>
+                            <tr>
+                                <td class="b-0">Import</td>
+                                <td class="text-right font-medium b-0">{{ factura.preu_net }}</td>
+                            </tr>
+                            <tr>
+                                <td>Client</td>
+                                <td class="text-right font-medium">{{factura.client['nombre']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Data factura</td>
+                                <td class="text-right font-medium">{{factura.data}}</td>
+                            </tr>
+                            <tr>
+                                <td>Venciment</td>
+                                <td class="text-right font-medium">{{factura.data_vigencia}}</td>
+                            </tr>
+                            <tr>
+                                <td>Pendent pagament</td>
+                                <td class="text-right font-medium">{{factura.pendent_pagament}}</td>
+                            </tr>
+                            <tr>
+                                <td>Pagat</td>
+                                <td class="text-right font-medium">{{factura.pendent_pagat}}</td>
+                            </tr>
+                            <tr>
+                                <td>Estat</td>
+                                <td class="text-right font-medium">{{factura.estat}}</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex p-20 no-block">
+            <div class="align-self-center">
+                <h4 class="m-b-0">Pagaments</h4>
+            </div>
+            <div class="ml-auto align-self-center"><button (click)="open(modalPagament)" class="btn btn-danger btn-sm">+ Pagament</button></div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <h4 class="card-title"><span class="lstick"></span>Pagaments</h4> -->
+                    <table class="table vm font-14 m-b-0">
+                        <thead>
+                            <tr>
+                                <th>Data PAgament</th>
+                                <th>Import</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pagament of pagaments">
+                                <td>
+                                    {{ pagament.data_pagament}}
+                                </td>
+                                <td class="text-right font-medium b-0">
+                                    {{ pagament.import_pagat }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<ng-template #modalPagament let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-pagament">Pagament</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal m-t-40" #hero2Form="ngForm" ngNativeValidate (ngSubmit)="guardaPagament( pagament )">
+            <div class="form-group">
+                <label for="pagament.factura">Factura</label>
+                <input type="text" [(ngModel)]="pagament.factura" id="pagament.factura" name="pagament.factura" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="pagament.client">Client</label>
+                <input type="text" [(ngModel)]="pagament.client" id="pagament.client" name="pagament.client" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="pagament.data_pagament" class="control-label">Data de pagament</label>
+                <input [(ngModel)]="pagament.data_pagament" id="pagament.data_pagament" name="pagament.data_pagament" type="date" class="form-control" required>
+                <!-- <label>Data</label>
+                <input type="date" [(ngModel)]="despesa.data" name="data" class="form-control"> -->
+            </div>
+            <div class="form-group">
+                <label for="pagament.import_pagat">Import</label>
+                <input type="number" [(ngModel)]="pagament.import_pagat" id="pagament.import_pagat" name="pagament.import_pagat" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pagament.observacions">Observacions</label>
+                <textarea class="form-control" [(ngModel)]="pagament.observacions" name="pagament.observacions" id="pagament.observacions" rows="5"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" (click)="guardaPagament(pagament)" type="button"> Guarda </button>
+        <button class="btn btn-warning" type="button" (click)="modal.close('Save click')"> Tanca </button>
+    </div>
+</ng-template>

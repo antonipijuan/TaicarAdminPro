@@ -1,0 +1,129 @@
+<div class="row" *ngIf="!carregant">
+
+    <!-- <form class="form-horizontal m-t-40 " #f2="ngForm " ngNativeValidate (ngSubmit)="guardaPressupost(pressupost) "> -->
+    <div class="col-md-6">
+        <div class="card card-body printableArea">
+            <form class="form-horizontal m-t-40" #hero2Form="ngForm" ngNativeValidate (ngSubmit)="guardaPagament( pagament )">
+                <div class="form-group">
+                    <label for="client">FActura</label>
+                    <select [(ngModel)]="pagament.factura" (change)="cargarFactura( pagament.factura )" id="factura" name="factura" class="form-control" required>
+                    <option value=" ">Seleccione Factura</option>
+                    <option *ngFor="let factura of factures" [value]="factura._id">
+                      {{factura._id}}
+                    </option>
+                  </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="client">Client</label>
+                    <select [(ngModel)]="pagament.client" id="client" name="client" class="form-control" required>
+                    <option value=" ">Seleccione Client</option>
+                    <option *ngFor="let client of clients" [value]="client._id">
+                      {{client.nombre}}
+                    </option>
+                  </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="pagament.data_pagament" class="control-label">Data de pagament</label>
+                    <input [(ngModel)]="pagament.data_pagament" id="pagament.data_pagament" name="pagament.data_pagament" type="date" class="form-control" required>
+                    <!-- <label>Data</label>
+                    <input type="date" [(ngModel)]="despesa.data" name="data" class="form-control"> -->
+                </div>
+                <div class="form-group">
+                    <label for="pagament.import_pagat">Import</label>
+                    <input type="number" [(ngModel)]="pagament.import_pagat" id="pagament.import_pagat" name="pagament.import_pagat" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="pagament.observacions">Observacions</label>
+                    <textarea class="form-control" [(ngModel)]="pagament.observacions" name="pagament.observacions" id="pagament.observacions" rows="5"></textarea>
+                </div>
+
+                <button class="btn btn-success" (click)="guardaPagament(pagament)" type="button"> Guarda </button>
+                <button class="btn btn-warning" type="button" [routerLink]="['/pagaments']"> Tanca </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><span class="lstick"></span>Dades Factura</h4>
+                    <table class="table vm font-14 m-b-0">
+                        <tbody>
+                            <tr>
+                                <td class="b-0">Import</td>
+                                <td class="text-right font-medium b-0">{{ vfactura.preu_net }}</td>
+                            </tr>
+                            <tr>
+                                <td>Client</td>
+                                <td class="text-right font-medium">{{vfactura.client['nombre']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Data factura</td>
+                                <td class="text-right font-medium">{{vfactura.data}}</td>
+                            </tr>
+                            <tr>
+                                <td>Venciment</td>
+                                <td class="text-right font-medium">{{vfactura.data_vigencia}}</td>
+                            </tr>
+                            <tr>
+                                <td>Pendent pagament</td>
+                                <td class="text-right font-medium">{{vfactura.pendent_pagament}}</td>
+                            </tr>
+                            <tr>
+                                <td>Pagat</td>
+                                <td class="text-right font-medium">{{vfactura.pendent_pagat}}</td>
+                            </tr>
+                            <tr>
+                                <td>Estat</td>
+                                <td class="text-right font-medium">{{vfactura.estat}}</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="d-flex p-20 no-block">
+            <div class="align-self-center">
+                <h4 class="m-b-0">Pagaments</h4>
+            </div>
+            <div class="ml-auto align-self-center"><button (click)="open(modalPagament)" class="btn btn-danger btn-sm">+ Pagament</button></div>
+        </div> -->
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <h4 class="card-title"><span class="lstick"></span>Pagaments</h4> -->
+                    <table class="table vm font-14 m-b-0">
+                        <thead>
+                            <tr>
+                                <th>Data PAgament</th>
+                                <th>Import</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pagament of pagaments">
+                                <td>
+                                    {{ pagament.data_pagament}}
+                                </td>
+                                <td class="text-right font-medium b-0">
+                                    {{ pagament.import_pagat }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

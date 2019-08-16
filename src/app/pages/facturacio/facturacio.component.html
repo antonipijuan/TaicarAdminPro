@@ -1,0 +1,184 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-4">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="stats">
+                        <h1 class="text-white">3257+</h1>
+                        <h6 class="text-white">Pressupostos</h6>
+                        <button class="btn btn-rounded btn-outline btn-light m-t-10 font-14" data-toggle="modal" data-target="#myModal">Crea Pressupost</button>
+
+                    </div>
+                    <div class="stats-icon text-right ml-auto"><i class="fa fa-twitter display-5 op-3 text-dark"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="stats">
+                        <h1 class="text-white">6509+</h1>
+                        <h6 class="text-white">Facebook Likes</h6>
+                        <button class="btn btn-rounded btn-outline btn-light m-t-10 font-14">Check list</button>
+                    </div>
+                    <div class="stats-icon text-right ml-auto"><i class="fa fa-facebook display-5 op-3 text-dark"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="stats">
+                        <h1 class="text-white">9062+</h1>
+                        <h6 class="text-white">Subscribe</h6>
+                        <button class="btn btn-rounded btn-outline btn-light m-t-10 font-14">Check list</button>
+                    </div>
+                    <div class="stats-icon text-right ml-auto"><i class="fa fa-envelope display-5 op-3 text-dark"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #factu (keyup)="buscarFactura( factu.value )" type="text" class="form-control" placeholder="Buscar factura...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Factures: ( <small> {{ _facturesService.totalFactures }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Data</th>
+                            <th>Data de venciment</th>
+                            <th>Client</th>
+                            <th>Preu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let factura of factures">
+                            <td>
+                                {{ factura.num }}
+                            </td>
+                            <td>
+                                {{ factura.data }}
+                            </td>
+                            <td>
+                                {{ factura.data_vigencia }}
+                            </td>
+                            <td>
+                                {{ factura.client.nombre }}
+                            </td>
+                            <td>
+                                {{ factura.client.nombre }}
+                            </td>
+                            <td>
+                                {{ factura.estat }}
+                            </td>
+                            <td>
+                                <button [routerLink]="['/factura', factura._id ]" class="btn btn-sm btn-success" type="button">Obrir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- .modal for add task -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Crea Pressupost</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Client</label>
+                        <input #input (keyup)="buscarClient( input.value )" type="text" class="form-control" placeholder="Buscar client..."></div>
+                    <!-- <input type="text" class="form-control" placeholder="Introdueix el client"> </div> -->
+                    <!-- <div class="form-group">
+                      <label>Assign to</label>
+                      <select class="custom-select form-control pull-right">
+                                          <option selected="">Sachin</option>
+                                          <option value="1">Sehwag</option>
+                                          <option value="2">Pritam</option>
+                                          <option value="3">Alia</option>
+                                          <option value="4">Varun</option>
+                                      </select>
+                  </div> -->
+                </form>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="card-title">Clients: ( <small> {{ _personesService.totalPersones }} </small> )</h3>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>codi</th>
+                                    <th>Nom i cognoms</th>
+                                    <th>Poblacio</th>
+                                    <th>E-mail</th>
+                                    <th>Telèfon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let client of clients">
+                                    <td>
+                                        {{ client._id }}
+                                    </td>
+                                    <td>
+                                        {{ client.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ client.poblacio }}
+                                    </td>
+                                    <td>
+                                        {{ client.email }}
+                                    </td>
+                                    <td>
+                                        {{ client.telefon }}
+                                    </td>
+                                    <td>
+                                        <button [routerLink]="['/pressupost', 'nuevo', client._id ]" data-dismiss="modal" class="btn btn-primary">
+                                  <i class="fa fa-edit"></i>
+                              </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
