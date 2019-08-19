@@ -53,14 +53,14 @@
                                 <div class="form-group">
                                     <label class="control-label">Dni</label>
                                     <input [(ngModel)]="persona.dni" name="dni" type="text" class="form-control" placeholder="Dni de lusuari" required>
-                                    <small class="form-control-feedback"> This is inline help </small> </div>
+                                </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group has-danger">
                                     <label class="control-label">Nom i cognoms</label>
                                     <input [(ngModel)]="persona.nombre" name="nombre" type="text" class="form-control" placeholder="Nom i cognoms del client ..." required>
-                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
                             </div>
                             <!--/span-->
                         </div>
@@ -70,11 +70,15 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Mail</label>
                                     <input [(ngModel)]="persona.email" name="email" type="text" class="form-control" placeholder="Email del client ..." required>
-                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
                                 <div class="form-group has-danger">
                                     <label class="control-label">Teèfon</label>
                                     <input [(ngModel)]="persona.telefon" name="telefon" type="text" class="form-control" placeholder="Telèfon del client ..." required>
-                                    <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Codi Client</label>
+                                    <input [(ngModel)]="persona.codiclient" name="codiclient" type="text" class="form-control" placeholder="Codi del client ..." required>
+                                </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">

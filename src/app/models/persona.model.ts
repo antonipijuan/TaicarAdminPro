@@ -11,6 +11,7 @@ export class Persona {
         public email: string,
         public telefon?: string,
         public observacions?: string,
+        public codiclient?: string,
         public _id?: string
     ) { }
 }
