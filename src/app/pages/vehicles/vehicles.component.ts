@@ -3,6 +3,7 @@ import { Vehicle } from '../../models/vehicle.model';
 import { VehicleService } from '../../services/service.index';
 
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vehicles',
@@ -38,7 +39,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   borrarVehicle( vehicle: Vehicle ) {
-    swal({
+    Swal.fire({
       title: '¿Esta seguro?',
       text: 'Esta a punto de borrar a ' + vehicle._id,
       type: 'warning',

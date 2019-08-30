@@ -1,90 +1,102 @@
-<div class="row" *ngIf="!carregant">
+<section id="invoice">
+    <div class="row" *ngIf="!carregant">
 
-    <!-- <form class="form-horizontal m-t-40 " #f2="ngForm " ngNativeValidate (ngSubmit)="guardaPressupost(pressupost) "> -->
-    <div class="col-md-12">
-        <div class="card card-body printableArea">
-            <form class="form-horizontal m-t-40" #pressuForm="ngForm" ngNativeValidate>
-                <h3><b>PRESSUPOST</b> <span class="pull-right">{{pressupost.num}}</span></h3>
-                <hr>
-                <div class="row ">
-                    <div class="col-md-6 ">
+        <!-- <form class="form-horizontal m-t-40 " #f2="ngForm " ngNativeValidate (ngSubmit)="guardaPressupost(pressupost) "> -->
+        <div class="col-md-12">
+            <div class="card card-body printableArea">
+                <div class="pull-left">
+                    <address>
+                                <h3> &nbsp;<b class="text-danger">CAravaning</b></h3>
+                                <p class="text-muted m-l-5">CArrer el que sigui,
+                                    <br/> P757572C,
+                                    <br/> XXXXX,
+                                    <br/> Bellvis - 25142</p>
+                            </address>
+                </div>
+                <form class="form-horizontal m-t-40" #pressuForm="ngForm" ngNativeValidate>
+                    <h3><b>PRESSUPOST</b> <span class="pull-right">{{pressupost.num}}</span></h3>
+                    <hr>
+                    <div class="row ">
+                        <div class="col-md-6 ">
 
-                        <label class="control-label">Num pressupost</label>
-                        <input [(ngModel)]="pressupost.num" id="num" name="num" type="text" class="form-control" required>
-                        <div class="pull-left">
-                            <label class="control-label">Data de pressupost</label>
-                            <input [(ngModel)]="pressupost.data" id="data" name="data" type="date" class="form-control" required>
-                            <label class="control-label">Data de vigència</label>
-                            <input [(ngModel)]="pressupost.data_vigencia" id="data_vigencia" name="data_vigencia" type="date" class="form-control" required>
+                            <label class="control-label">Num pressupost</label>
+                            <input [(ngModel)]="pressupost.num" id="num" name="num" type="text" class="form-control" required>
+                            <div class="pull-left">
+                                <label class="control-label">Data de pressupost</label>
+                                <input [(ngModel)]="pressupost.data" id="data" name="data" type="date" class="form-control" required>
+                                <label class="control-label">Data de vigència</label>
+                                <input [(ngModel)]="pressupost.data_vigencia" id="data_vigencia" name="data_vigencia" type="date" class="form-control" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="pull-right">
-                            <h4 class="font-bold">{{ pressupost.client.nombre }}</h4>
+                        <div class="col-md-6 ">
+                            <div class="pull-right">
+                                <h4 class="font-bold">{{ pressupost.client.nombre }}</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="table-responsive m-t-40" style="clear: both;">
-                            <button *ngIf="pressupost.estat=='vigent'" class="btn btn-rounded btn-success m-t-10 font-14" (click)="open(content)">Afegeix Reserva</button>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center ">#</th>
-                                        <th>Vehicle</th>
-                                        <th class="text-right ">Data Inicial</th>
-                                        <th class="text-right ">Data Final</th>
-                                        <th class="text-right ">Temporada</th>
-                                        <th class="text-right ">Dies</th>
-                                        <th class="text-right ">Preu</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of pressupost.detall; let i=index">
-                                        <td class="text-center ">{{ i }}</td>
-                                        <td>{{item.vehicle['nom']}} / {{item.vehicle['matricula']}}</td>
-                                        <td class="text-right ">{{item.data_inicial}} </td>
-                                        <td class="text-right ">{{item.data_final}} </td>
-                                        <td class="text-right ">{{item.temporada}} </td>
-                                        <td class="text-right ">{{item.dies}} </td>
-                                        <td class="text-right ">{{item.preu}} </td>
-                                        <td> <button *ngIf="pressupost.estat=='vigent'" (click)="borrarDetall( i )" class="btn btn-danger">
+                        <div class="col-md-12">
+                            <div class="table-responsive m-t-40" style="clear: both;">
+                                <button *ngIf="pressupost.estat=='vigent'" class="btn btn-rounded btn-success m-t-10 font-14" (click)="open(content)">Afegeix Reserva</button>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center ">#</th>
+                                            <th>Vehicle</th>
+                                            <th class="text-right ">Data Inicial</th>
+                                            <th class="text-right ">Data Final</th>
+                                            <th class="text-right ">Temporada</th>
+                                            <th class="text-right ">Dies</th>
+                                            <th class="text-right ">Preu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of pressupost.detall; let i=index">
+                                            <td class="text-center ">{{ i }}</td>
+                                            <td>{{item.vehicle['nom']}} / {{item.vehicle['matricula']}}</td>
+                                            <td class="text-right ">{{item.data_inicial}} </td>
+                                            <td class="text-right ">{{item.data_final}} </td>
+                                            <td class="text-right ">{{item.temporada}} </td>
+                                            <td class="text-right ">{{item.dies}} </td>
+                                            <td class="text-right ">{{item.preu}} </td>
+                                            <td> <button *ngIf="pressupost.estat=='vigent'" (click)="borrarDetall( i )" class="btn btn-danger">
                                         <i class="fa fa-trash-o "></i>
                                       </button></td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-12 ">
-                        <div class="pull-right m-t-30 text-right ">
-                            <p>Sub - Total brut: {{ pressupost.preu_brut }}</p>
-                            <p>IVA (16%) : $XXX </p>
-                            <hr>
-                            <h3><b>Total :</b> {{ pressupost.preu_net }}</h3>
-                        </div>
-                        <div class="clearfix"></div>
-                        <hr>
-                        <div class="col text-right">
-                            <div *ngIf="!esnou" ngbDropdown placement="top-right" class="d-inline-block">
-                                <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Gestions</button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                    <button *ngIf="pressupost.estat=='vigent'" (click)="confirmarPressupost(pressupost)" class="dropdown-item">Confirma</button>
-                                    <button *ngIf="pressupost.estat=='vigent'" (click)="anulaPressupost(pressupost)" class="dropdown-item">Anula</button>
-                                    <button *ngIf="pressupost.estat=='vigent' || pressupost.estat=='confirmat'" (click)="facturarPressupost(pressupost)" class="dropdown-item">Factura</button>
-                                </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
-                            <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="pull-right m-t-30 text-right ">
+                                <p>Sub - Total brut: {{ pressupost.preu_brut }}</p>
+                                <p>IVA (16%) : $XXX </p>
+                                <hr>
+                                <h3><b>Total :</b> {{ pressupost.preu_net }}</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="col text-right">
+                                <div *ngIf="!esnou" ngbDropdown placement="top-right" class="d-inline-block">
+                                    <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Gestions</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                        <button *ngIf="pressupost.estat=='vigent'" (click)="confirmarPressupost(pressupost)" class="dropdown-item">Confirma</button>
+                                        <button *ngIf="pressupost.estat=='vigent'" (click)="anulaPressupost(pressupost)" class="dropdown-item">Anula</button>
+                                        <button *ngIf="pressupost.estat=='vigent' || pressupost.estat=='confirmat'" (click)="facturarPressupost(pressupost)" class="dropdown-item">Factura</button>
+                                    </div>
+                                </div>
+                                <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
+                                <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
+                                <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+
+
     </div>
-
-
-</div>
+</section>
 
 
 <ng-template #content let-modal>
@@ -143,6 +155,7 @@
     <div class="modal-footer ">
         <button type="button" class="btn btn-outline-dark" (click)="guardaDetall( article )">Save</button>
         <button type="button" class="btn btn-light" (click)="modal.close( 'Close click')">Close</button>
+
     </div>
 </ng-template>
 

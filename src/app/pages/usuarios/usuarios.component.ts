@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 import { ModalUploadService } from '../../component/modal-upload/modal-upload.service';
+import Swal from 'sweetalert2';
 
 declare var swal: any;
 
@@ -88,16 +89,15 @@ export class UsuariosComponent implements OnInit {
   borrarUsuario( usuario: Usuario ) {
 
     if ( usuario._id === this._usuarioService.usuario._id ) {
-      swal('No puede borrar usuario', 'No se puede borrar a si mismo', 'error');
+      Swal.fire('No puede borrar usuario', 'No se puede borrar a si mismo', 'error');
       return;
     }
 
-    swal({
+    Swal.fire({
       title: '¿Esta seguro?',
       text: 'Esta a punto de borrar a ' + usuario.nombre,
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true,
+      type: 'warning',
+      showCancelButton: true,
     })
     .then( borrar => {
 

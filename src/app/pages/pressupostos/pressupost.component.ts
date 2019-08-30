@@ -20,6 +20,7 @@ import { map } from 'rxjs/operator/map';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { IAlert } from '../../component/alert/alert.component';
 import { FacturaDetall } from 'src/app/models/facturadetall.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pressupost',
@@ -27,7 +28,7 @@ import { FacturaDetall } from 'src/app/models/facturadetall.model';
 
 })
 export class PressupostComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
 
   valor = 'disponible';
@@ -263,7 +264,7 @@ export class PressupostComponent implements OnInit {
           console.log(resp);
 
           if (resp.total > 0) {
-            swal(
+            Swal.fire(
               'Reserva no disponible',
               'You clicked the button!',
               'success'
@@ -280,7 +281,7 @@ export class PressupostComponent implements OnInit {
             this.nodisponibles = [];
           } else {
 
-            swal(
+            Swal.fire(
               'Reserva disponible',
               'You clicked the button!',
               'success'
@@ -367,7 +368,7 @@ export class PressupostComponent implements OnInit {
   }
 
   anulaPressupost( vpressupost: Pressupost) {
-    swal({
+    Swal.fire({
       title: 'Estàs segur danular aquest pressupost?',
       text: 'You wont be able to revert this!',
       type: 'warning',
@@ -396,7 +397,7 @@ export class PressupostComponent implements OnInit {
   }
 
   confirmarPressupost( vpressupost: Pressupost) {
-    swal({
+    Swal.fire({
       title: 'Estàs segur de confirmar aquest pressupost?',
       text: 'You wont be able to revert this!',
       type: 'warning',
@@ -421,7 +422,7 @@ export class PressupostComponent implements OnInit {
   }
 
   facturarPressupost( vpressupost: Pressupost) {
-    swal({
+    Swal.fire({
       title: 'Estàs segur de facturar aquest pressupost?',
       text: 'You wont be able to revert this!',
       type: 'warning',

@@ -11,6 +11,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import * as dadesTaula from './datos_despeses';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-despeses',
@@ -18,7 +19,7 @@ import * as dadesTaula from './datos_despeses';
   styles: [`.form-control { width: 300px; }`]
 })
 export class DespesesComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   closeResult: string;
   public model: any;
@@ -116,7 +117,7 @@ formatter = (x: {nom: string}) => x.nom;
 
       }
   borrarDespesa( vdespesa: string ) {
-    swal({
+    Swal.fire({
       title: '¿Esta seguro?',
       text: 'Esta a punto de borrar a ' + vdespesa,
       type: 'warning',

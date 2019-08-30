@@ -9,11 +9,13 @@ import { PersonaService } from '../../services/service.index';
 import { Persona } from '../../models/persona.model';
 import { Pressupost } from '../../models/pressupost.model';
 
-import swal from 'sweetalert2';
+
 import { Observable } from 'rxjs';
 import { ReservaService } from '../../services/reserva/reserva.service';
 import { Reserva } from '../../models/reserva.model';
 import { Select2OptionData } from 'ng2-select2';
+import Swal from 'sweetalert2';
+import { PaginationInstance } from 'ngx-pagination';
 
 
 
@@ -23,19 +25,23 @@ import { Select2OptionData } from 'ng2-select2';
 
 })
 export class PressupostosComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   closeResult: string;
   public model: any;
   public exampleData: Array<Select2OptionData>;
 
-
+  public filter: string = '';
+  public config: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 15,
+    currentPage: 1
+};  
   carregant = false;
   clickedItem;
   nomsclients = [];
   clients: Persona[] = [];
   pressupostos: Pressupost[] = [];
-
 
   constructor(
 
@@ -109,7 +115,7 @@ export class PressupostosComponent implements OnInit {
   }
 
   carregarClients() {
-    this._personesService.cargarPersones()
+    this._personesService.cargarPersonesTotes()
         .subscribe( persones => {
           console.log(persones);
           this.clients = persones;
@@ -166,7 +172,7 @@ export class PressupostosComponent implements OnInit {
   }
 
   borrarPressupost (termino: string) {
-    swal({
+    Swal.fire({
       title: 'Are you sure?',
       text: 'You wont be able to revert this!',
       type: 'warning',
@@ -189,7 +195,7 @@ export class PressupostosComponent implements OnInit {
   }
 
   anularPressupost( termino: string) {
-    swal({
+    Swal.fire({
       title: 'Are you sure?',
       text: 'You wont be able to revert this!',
       type: 'warning',
@@ -210,7 +216,7 @@ export class PressupostosComponent implements OnInit {
 // closeModal() { this.modalRef.close(); }
 
 open(content) {
-  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'xl'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
   }, (reason) => {
     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

@@ -3,6 +3,7 @@ import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit {
     }
 
     if ( archivo.type.indexOf('image') < 0 ) {
-      swal('Sólo imágenes', 'El archivo seleccionado no es una imagen', 'error');
+      Swal.fire('Sólo imágenes', 'El archivo seleccionado no es una imagen', 'error');
       this.imagenSubir = null;
       return;
     }

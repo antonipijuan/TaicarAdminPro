@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 
 import swal from 'sweetalert2';
 
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/catch';
 
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class UsuarioService {
@@ -49,7 +50,7 @@ export class UsuarioService {
                 })
                 .catch( err => {
                   this.router.navigate(['/login']);
-                  swal( 'No se pudo renovar token', 'No fue posible renovar token', 'error' );
+                  Swal.fire( 'No se pudo renovar token', 'No fue posible renovar token', 'error' );
                   return Observable.throw( err );
                 });
 
@@ -128,7 +129,7 @@ export class UsuarioService {
                 })
                 .catch( err => {
 
-                  swal( 'Error en el login', err.error.mensaje, 'error' );
+                  Swal.fire( 'Error en el login', err.error.mensaje, 'error' );
                   return Observable.throw( err );
                 });
 
@@ -142,11 +143,11 @@ export class UsuarioService {
     return this.http.post( url, usuario )
               .map( (resp: any) => {
 
-                swal('Usuario creado', usuario.email, 'success' );
+                Swal.fire('Usuario creado', usuario.email, 'success' );
                 return resp.usuario;
               })
               .catch( err => {
-                swal( err.error.mensaje, err.error.errors.message, 'error' );
+                Swal.fire( err.error.mensaje, err.error.errors.message, 'error' );
                 return Observable.throw( err );
               });
   }
@@ -164,12 +165,12 @@ export class UsuarioService {
                     this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
                   }
 
-                  swal('Usuario actualizado', usuario.nombre, 'success' );
+                  Swal.fire('Usuario actualizado', usuario.nombre, 'success' );
 
                   return true;
                 })
                 .catch( err => {
-                  swal( err.error.mensaje, err.error.errors.message, 'error' );
+                  Swal.fire( err.error.mensaje, err.error.errors.message, 'error' );
                   return Observable.throw( err );
                 });
 
@@ -181,7 +182,7 @@ export class UsuarioService {
           .then( (resp: any) => {
 
             this.usuario.img = resp.usuario.img;
-            swal( 'Imagen Actualizada', this.usuario.nombre, 'success' );
+            Swal.fire( 'Imagen Actualizada', this.usuario.nombre, 'success' );
             this.guardarStorage( id, this.token, this.usuario, this.menu );
 
           })
@@ -213,7 +214,7 @@ export class UsuarioService {
 
     return this.http.delete( url )
                 .map( resp => {
-                  swal('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
+                  Swal.fire('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
                   return true;
                 });
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 import { Pressupost } from '../../models/pressupost.model';
 import { Persona } from '../../models/persona.model';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { UsuarioService } from '../usuario/usuario.service';
 import { PressupostDetall } from '../../models/pressupostdetall';
 
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class PressupostService {
@@ -66,7 +67,7 @@ export class PressupostService {
 
       return this.http.put( url, vpressupost )
             .map( (resp: any) => {
-              swal('Pressupost actualitzat', resp.pressupost._id, 'success');
+              Swal.fire('Pressupost actualitzat', resp.pressupost._id, 'success');
               return resp.pressupost;
 
             });
@@ -76,7 +77,7 @@ export class PressupostService {
       url += '?token=' + this._usuarioService.token;
       return this.http.post( url, vpressupost )
           .map( (resp: any) => {
-            swal('Pressupost Creado', resp.pressupost._id, 'success');
+            Swal.fire('Pressupost Creado', resp.pressupost._id, 'success');
             return resp.pressupost;
           });
       }

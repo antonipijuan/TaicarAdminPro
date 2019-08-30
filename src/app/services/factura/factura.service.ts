@@ -4,7 +4,7 @@ import { Persona } from '../../models/persona.model';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from '../usuario/usuario.service';
 import { PressupostDetall } from '../../models/pressupostdetall';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 import { Reserva } from '../../models/reserva.model';
 
 import * as moment from 'moment';

@@ -3,7 +3,7 @@ import { Persona } from '../../models/persona.model';
 // import { Informe } from '../../models/informe.model';
 // import { Http, Headers, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 // import { UsuarioService } from '../../services/service.index';
 
 import 'rxjs/add/operator/map';
@@ -13,6 +13,7 @@ import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 import swal from 'sweetalert2';
 import { UsuarioService } from '../usuario/usuario.service';
+import Swal from 'sweetalert2';
 // import { Observable } from 'rxjs';
 // import { AnotacioService } from '../anotacio/anotacio.service';
 
@@ -46,7 +47,7 @@ export class PersonaService {
     return this.http.post( url, persona )
               .map( (resp: any) => {
 
-                swal('Persona creado', persona.nombre, 'success' );
+                Swal.fire('Persona creado', persona.nombre, 'success' );
                 return resp.persona;
               });
   }
@@ -65,7 +66,7 @@ export class PersonaService {
             //     const personaDB: Persona = resp.persona;
             //      // this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
             //    }
-                swal('Persona actualizado', persona.nombre, 'success' );
+            Swal.fire('Persona actualizado', persona.nombre, 'success' );
                 console.log(persona);
                 return resp.persona;
                 });
@@ -79,7 +80,7 @@ export class PersonaService {
             //     const personaDB: Persona = resp.persona;
             //      // this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
             //    }
-          swal('Persona creada', persona.nombre, 'success' );
+            Swal.fire('Persona creada', persona.nombre, 'success' );
             console.log(persona);
             return resp.persona;
 
@@ -89,7 +90,15 @@ export class PersonaService {
 
   }
 
-  cargarPersones() {
+  paginarPersona(vpagina: number = 0) {
+    const url = URL_SERVICIOS + '/persona/paginar/' + vpagina;
+    return this.http.get( url )
+        .map( (resp: any) => {
+          return resp;
+        });
+  }
+
+  cargarPersonesTotes() {
 
     const url = URL_SERVICIOS + '/persona';
     return this.http.get( url )
@@ -149,7 +158,7 @@ export class PersonaService {
                   //   .subscribe( () => {
                   //     console.log('esborrat');
                   //   });
-                  swal('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
+                  Swal.fire('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
                   return true;
                 });
 

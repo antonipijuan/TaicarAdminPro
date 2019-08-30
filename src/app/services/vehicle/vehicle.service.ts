@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 // import { UsuarioService } from '../service.index';
 import { Vehicle } from '../../models/vehicle.model';
 
 import swal from 'sweetalert2';
 import { UsuarioService } from '../usuario/usuario.service';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class VehicleService {
@@ -50,7 +51,7 @@ export class VehicleService {
 
     return this.http.delete( url )
     .map( resp => {
-      swal( 'Vehicle Borrado', 'Vehicle borrado correctamente', 'success' );
+      Swal.fire( 'Vehicle Borrado', 'Vehicle borrado correctamente', 'success' );
       return resp;
     });
 
@@ -67,7 +68,7 @@ url += '?token=' + this._usuarioService.token;
 
 return this.http.put( url, vehicle )
       .map( (resp: any) => {
-        swal('Vehicle Actualizado', vehicle.marca, 'success');
+        Swal.fire('Vehicle Actualizado', vehicle.marca, 'success');
         return resp.vehicle;
 
       });
@@ -77,7 +78,7 @@ return this.http.put( url, vehicle )
 url += '?token=' + this._usuarioService.token;
 return this.http.post( url, vehicle )
     .map( (resp: any) => {
-      swal('Vehicle Creado', vehicle.marca, 'success');
+      Swal.fire('Vehicle Creado', vehicle.marca, 'success');
       return resp.vehicle;
     });
 }

@@ -27,7 +27,7 @@ import { IAlert } from '../../component/alert/alert.component';
 
 })
 export class DespesaComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
 
   carregant = true;

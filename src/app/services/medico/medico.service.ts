@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Medico } from '../../models/medico.model';
 
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class MedicoService {
@@ -53,7 +54,7 @@ export class MedicoService {
 
     return this.http.delete( url )
               .map( resp => {
-                swal( 'Médico Borrado', 'Médico borrado correctamente', 'success' );
+                Swal.fire( 'Médico Borrado', 'Médico borrado correctamente', 'success' );
                 return resp;
               });
 
@@ -70,7 +71,7 @@ export class MedicoService {
 
       return this.http.put( url, medico )
                 .map( (resp: any) => {
-                  swal('Médico Actualizado', medico.nombre, 'success');
+                  Swal.fire('Médico Actualizado', medico.nombre, 'success');
                   return resp.medico;
 
                 });
@@ -80,7 +81,7 @@ export class MedicoService {
       url += '?token=' + this._usuarioService.token;
       return this.http.post( url, medico )
               .map( (resp: any) => {
-                swal('Médico Creado', medico.nombre, 'success');
+                Swal.fire('Médico Creado', medico.nombre, 'success');
                 return resp.medico;
               });
     }

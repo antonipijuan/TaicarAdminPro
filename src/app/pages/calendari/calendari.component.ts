@@ -48,7 +48,8 @@ const colors: any = {
   templateUrl: './calendari.component.html'
 })
 export class CalendariComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  //@ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   reserves: Reserva[] = [];
 
@@ -168,7 +169,7 @@ export class CalendariComponent implements OnInit {
   }
 
   carregarEvents() {
-    this._reservaService.carregarReserves()
+/*     this._reservaService.carregarReserves()
       .subscribe( resp => {
         this.reserves = resp;
         console.log(resp);
@@ -177,7 +178,7 @@ export class CalendariComponent implements OnInit {
           this.events.push({
             title: 'Reserva:' + entry._id + ' / ' + 'Vehicle:' + entry.vehicle['matricula'] + ' / '
                   + 'Client:' + entry.pressupost['client'],
-            start: startOfDay(entry.data_inicial),
+ start: startOfDay(entry.data_inicial),
             end: endOfDay(entry.data_final),
             color: this.obtenirColor(entry.vehicle['color']),
             draggable: true,
@@ -188,11 +189,10 @@ export class CalendariComponent implements OnInit {
           });
           this.refresh.next();
         }
-      });
+      }); */
   }
 
   obtenirColor(color: string) {
-
     switch (color) {
       case 'red':
           return colors.red;

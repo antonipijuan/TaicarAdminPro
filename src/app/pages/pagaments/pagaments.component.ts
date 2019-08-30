@@ -6,6 +6,7 @@ import { PersonaService } from '../../services/service.index';
 
 import swal from 'sweetalert2';
 import { PagamentService } from '../../services/pagament/pagament.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagaments',
@@ -44,7 +45,7 @@ export class PagamentsComponent implements OnInit {
   }
 
   borrarPagament(vpagament: string) {
-    swal({
+    Swal.fire({
       title: 'Are you sure?',
       text: 'You wont be able to revert this!',
       type: 'warning',

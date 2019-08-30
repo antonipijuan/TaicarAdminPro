@@ -20,7 +20,7 @@ const Approutes: Routes = [
     path: '',
     component: FullComponent,
     canActivate: [ LoginGuardGuard ],
-    loadChildren: './pages/pages.module#PagesModule'
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
 
   {

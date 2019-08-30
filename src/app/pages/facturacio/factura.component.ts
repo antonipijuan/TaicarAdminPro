@@ -10,13 +10,14 @@ import { ModalUploadService } from '../../component/modal-upload/modal-upload.se
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-factura',
   templateUrl: './factura.component.html'
 })
 export class FacturaComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   closeResult: string;
   public model: any;
@@ -98,7 +99,7 @@ export class FacturaComponent implements OnInit {
 
       //   });
     } else {
-      swal({
+      Swal.fire({
         type: 'error',
         title: 'Pagament incorrecte',
         text: 'Limport anotat es superior a limport pendent de la factura',

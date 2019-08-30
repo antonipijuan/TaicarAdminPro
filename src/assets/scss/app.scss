@@ -26,7 +26,6 @@ Global Styles
 
 * {
     outline: none;
-    
 }
 
 body {
@@ -48,13 +47,15 @@ a:hover,
 a:focus {
     text-decoration: none;
 }
-a{
-    color:$themecolor;
+
+a {
+    color: $themecolor;
     &:hover,
     &:focus {
         color: $headingtext;
     }
 }
+
 a.link {
     color: $headingtext;
     &:hover,
@@ -77,9 +78,6 @@ html body .mdi:before,
 html body .mdi-set {
     line-height: initial;
 }
-
-
-
 
 
 /*******************
@@ -158,6 +156,7 @@ html body {
     }
 }
 
+
 /*******************
 Opacity
 *******************/
@@ -165,10 +164,10 @@ Opacity
 .op-5 {
     opacity: 0.5;
 }
+
 .op-3 {
     opacity: 0.3;
 }
-
 
 
 /*******************
@@ -190,9 +189,6 @@ ol li {
 }
 
 
-
-
-
 /*******************
 Paddings
 *******************/
@@ -201,94 +197,70 @@ html body {
     .p-0 {
         padding: 0px;
     }
-
     .p-10 {
         padding: 10px;
     }
-
     .p-20 {
         padding: 20px;
     }
-
     .p-30 {
         padding: 30px;
     }
-
     .p-l-0 {
         padding-left: 0px;
     }
-
     .p-l-10 {
         padding-left: 10px;
     }
-
     .p-l-20 {
         padding-left: 20px;
     }
-
     .p-r-0 {
         padding-right: 0px;
     }
-
     .p-r-10 {
         padding-right: 10px;
     }
-
     .p-r-20 {
         padding-right: 20px;
     }
-
     .p-r-30 {
         padding-right: 30px;
     }
-
     .p-r-40 {
         padding-right: 40px;
     }
-
     .p-t-0 {
         padding-top: 0px;
     }
-
     .p-t-10 {
         padding-top: 10px;
     }
-
     .p-t-20 {
         padding-top: 20px;
     }
-
     .p-t-30 {
         padding-top: 30px;
     }
-
     .p-b-0 {
         padding-bottom: 0px;
     }
-
     .p-b-5 {
         padding-bottom: 5px;
     }
-
     .p-b-10 {
         padding-bottom: 10px;
     }
-
     .p-b-20 {
         padding-bottom: 20px;
     }
-
     .p-b-30 {
         padding-bottom: 30px;
     }
-
     .p-b-40 {
         padding-bottom: 40px;
     }
 }
-
-
-
 
 
 /*******************
@@ -299,114 +271,85 @@ html body {
     .m-0 {
         margin: 0px;
     }
-
     .m-l-5 {
         margin-left: 5px;
     }
-
     .m-l-10 {
         margin-left: 10px;
     }
-
     .m-l-15 {
         margin-left: 15px;
     }
-
     .m-l-20 {
         margin-left: 20px;
     }
-
     .m-l-30 {
         margin-left: 30px;
     }
-
     .m-l-40 {
         margin-left: 40px;
     }
-
     .m-r-5 {
         margin-right: 5px;
     }
-
     .m-r-10 {
         margin-right: 10px;
     }
-
     .m-r-15 {
         margin-right: 15px;
     }
-
     .m-r-20 {
         margin-right: 20px;
     }
-
     .m-r-30 {
         margin-right: 30px;
     }
-
     .m-r-40 {
         margin-right: 40px;
     }
-
     .m-t-0 {
         margin-top: 0px;
     }
-
     .m-t-5 {
         margin-top: 5px;
     }
-
     .m-t-10 {
         margin-top: 10px;
     }
-
     .m-t-15 {
         margin-top: 15px;
     }
-
     .m-t-20 {
         margin-top: 20px;
     }
-
     .m-t-30 {
         margin-top: 30px;
     }
-
     .m-t-40 {
         margin-top: 40px;
     }
-
     .m-b-0 {
         margin-bottom: 0px;
     }
-
     .m-b-5 {
         margin-bottom: 5px;
     }
-
     .m-b-10 {
         margin-bottom: 10px;
     }
-
     .m-b-15 {
         margin-bottom: 15px;
     }
-
     .m-b-20 {
         margin-bottom: 20px;
     }
-
     .m-b-30 {
         margin-bottom: 30px;
     }
-
     .m-b-40 {
         margin-bottom: 40px;
     }
 }
-
-
-
 
 
 /*******************
@@ -417,18 +360,13 @@ html body {
     .vt {
         vertical-align: top;
     }
-
     .vm {
         vertical-align: middle;
     }
-
     .vb {
         vertical-align: bottom;
     }
 }
-
-
-
 
 
 /*******************
@@ -440,9 +378,6 @@ Opacity
 }
 
 
-
-
-
 /*******************
 font weight
 *******************/
@@ -451,11 +386,9 @@ html body {
     .font-bold {
         font-weight: 700;
     }
-
     .font-normal {
         font-weight: normal;
     }
-
     .font-light {
         font-weight: 300;
     }
@@ -478,9 +411,6 @@ html body {
         font-size: 20px;
     }
 }
-
-
-
 
 
 /*******************
@@ -507,9 +437,6 @@ html body {
         border: 1px solid $border!important;
     }
 }
-
-
-
 
 
 /*******************
@@ -542,9 +469,6 @@ Thumb size
 .radius {
     border-radius: $radius;
 }
-
-
-
 
 
 /*******************
@@ -583,19 +507,15 @@ html body {
     .text-blue {
         color: $blue;
     }
-
     .text-purple {
         color: $purple;
     }
-
     .text-primary {
         color: $primary;
     }
-
     .text-megna {
         color: $megna;
     }
-
     .text-dark {
         color: $bodytext;
     }
@@ -603,9 +523,6 @@ html body {
         color: $themecolor;
     }
 }
-
-
-
 
 
 /*******************
@@ -639,11 +556,9 @@ html body {
     .bg-theme {
         background-color: $themecolor;
     }
-
     .bg-inverse {
         background-color: $inverse;
     }
-
     .bg-purple {
         background-color: $purple;
     }
@@ -653,26 +568,21 @@ html body {
     .bg-light-primary {
         background-color: $light-primary;
     }
-
     .bg-light-success {
         background-color: $light-success;
     }
-
     .bg-light-info {
         background-color: $light-info;
     }
     .bg-light-extra {
         background-color: $extra-light;
     }
-
     .bg-light-warning {
         background-color: $light-warning;
     }
-
     .bg-light-danger {
         background-color: $light-danger;
     }
-
     .bg-light-inverse {
         background-color: $light-inverse;
     }
@@ -683,9 +593,6 @@ html body {
         background-color: $white;
     }
 }
-
-
-
 
 
 /*******************
@@ -733,9 +640,6 @@ Rounds
 .round.round-primary {
     background: $primary;
 }
-
-
-
 
 
 /*******************
@@ -803,7 +707,6 @@ Labels
     background-color: $white;
 }
 
-
 .label-light-success {
     background-color: $light-success;
     color: $success;
@@ -838,9 +741,6 @@ Labels
     background-color: $light-inverse;
     color: $inverse;
 }
-
-
-
 
 
 /*******************
@@ -906,10 +806,6 @@ Pagination
 }
 
 
-
-
-
-
 /*******************
 Table Cell
 *******************/
@@ -967,9 +863,6 @@ Table Cell
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-
-
-
 
 
 /*******************
@@ -1101,9 +994,6 @@ html body .waves-notransition {
 }
 
 
-
-
-
 /*Badge*/
 
 .badge {
@@ -1155,17 +1045,12 @@ html body .waves-notransition {
 }
 
 
-
-
-
-
 /*******************
 Buttons
 ******************/
 
 .btn {
     padding: 7px 12px;
-
     cursor: pointer;
 }
 
@@ -1242,7 +1127,6 @@ Buttons
 .btn-rounded {
     border-radius: 60px;
     padding: 7px 18px;
-
     &.btn-lg {
         padding: .75rem 1.5rem;
     }
@@ -1694,7 +1578,6 @@ Buttons
     margin: 0 8px 8px 0px;
 }
 
-
 .btn-label {
     background: rgba(0, 0, 0, 0.05);
     display: inline-block;
@@ -1766,6 +1649,7 @@ Buttons
     color: $white;
     background-color: #171515;
 }
+
 
 /*******************
 Notify
@@ -1851,6 +1735,7 @@ Notify
     }
 }
 
+
 /*******************
 File Upload 
 ******************/
@@ -1871,6 +1756,7 @@ File Upload
     }
 }
 
+
 /*******************
 Megamenu
 ******************/
@@ -1878,16 +1764,14 @@ Megamenu
 .mega-dropdown {
     position: static!important;
     width: 100%;
-    
     .dropdown-menu {
         width: 100%;
         padding: 30px;
         margin-top: 0px;
-        left:0px!important;
+        left: 0px!important;
     }
     ul {
         padding: 0px;
-
         li {
             list-style: none;
         }
@@ -1912,6 +1796,7 @@ Megamenu
     }
 }
 
+
 /*******************
 List-style-none
 ******************/
@@ -1933,6 +1818,7 @@ ul.list-style-none {
     }
 }
 
+
 /*******************
 dropdown-item
 ******************/
@@ -1942,6 +1828,7 @@ dropdown-item
     color: $bodytext;
 }
 
+
 /*******************
 Custom-select
 ******************/
@@ -1950,6 +1837,7 @@ Custom-select
     background: url(../../assets/images/custom-select.png) right .75rem center no-repeat;
 }
 
+
 /*******************
 textarea
 ******************/
@@ -1957,6 +1845,7 @@ textarea
 textarea {
     resize: none;
 }
+
 
 /*******************
 Form-control
@@ -2011,6 +1900,7 @@ form label {
 Layouts
 *****************/
 
+
 /*Card-noborders*/
 
 .card-no-border {
@@ -2043,8 +1933,13 @@ Layouts
     overflow: auto;
 }
 
+
 /*******************/
+
+
 /*widgets -app*/
+
+
 /*******************/
 
 .css-bar:after {
@@ -2055,8 +1950,13 @@ Layouts
     z-index: 10;
 }
 
+
 /*******************/
+
+
 /*single column*/
+
+
 /*******************/
 
 .single-column {
@@ -2074,8 +1974,13 @@ Layouts
     margin: 0 auto;
 }
 
+
 /*******************/
+
+
 /*card-default*/
+
+
 /*******************/
 
 .card-default {
@@ -2085,36 +1990,40 @@ Layouts
     }
 }
 
+
 /*******************/
+
+
 /*pace-js*/
+
+
 /*******************/
 
 .pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .pace-inactive {
-  display: none;
+    display: none;
 }
 
 .pace .pace-progress {
-  background: $danger;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 100%;
-  width: 100%;
-  height: 2px;
+    background: $danger;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
 }
 
-.progress{
-    height:auto;
-    min-height:6px;
+.progress {
+    height: auto;
+    min-height: 6px;
 }
 
 .no-control-indicator {

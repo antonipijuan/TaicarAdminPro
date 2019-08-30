@@ -6,6 +6,7 @@ import { Pagament } from 'src/app/models/pagament.model';
 import { Factura } from 'src/app/models/factura.model';
 import { Persona } from 'src/app/models/persona.model';
 import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagament',
@@ -117,7 +118,7 @@ export class PagamentComponent implements OnInit {
 
       //   });
     } else {
-      swal({
+      Swal.fire({
         type: 'error',
         title: 'Pagament incorrecte',
         text: 'Limport anotat es superior a limport pendent de la factura',
@@ -159,7 +160,7 @@ export class PagamentComponent implements OnInit {
     });
   }
   carregarClients() {
-    this._clientsService.cargarPersones()
+    this._clientsService.cargarPersonesTotes()
     .subscribe( persones => {
 
       this.clients = persones;

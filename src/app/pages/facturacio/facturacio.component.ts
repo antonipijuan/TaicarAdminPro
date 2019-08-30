@@ -26,7 +26,7 @@ export class FacturacioComponent implements OnInit {
   }
 
   carregarClients() {
-    this._personesService.cargarPersones()
+    this._personesService.cargarPersonesTotes()
         .subscribe( persones => this.clients = persones);
   }
 

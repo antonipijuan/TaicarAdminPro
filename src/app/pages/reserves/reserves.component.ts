@@ -5,6 +5,7 @@ import { ReservaService } from '../../services/service.index';
 import swal from 'sweetalert2';
 import { VehicleService } from '../../services/vehicle/vehicle.service';
 import { Vehicle } from '../../models/vehicle.model';
+import Swal from 'sweetalert2';
 
 declare var jQuery: any;
 declare var $: any;
@@ -78,7 +79,7 @@ export class ReservesComponent implements OnInit {
   }
 
   borrarReserva( vreserva: Reserva ) {
-    swal({
+    Swal.fire({
       title: '¿Esta seguro?',
       text: 'Esta a punto de borrar a ' + vreserva._id,
       type: 'warning',

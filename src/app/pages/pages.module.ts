@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,16 +11,19 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
 
-// Calendari
-import './../../../node_modules/flatpickr/dist/flatpickr.css';
-// import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
+import { CalendarHeaderComponent } from './calendari/calendari-header.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+import localEs from '@angular/common/locales/es';
+
+registerLocaleData(localEs);
+
+
+// Calendari
+import './../../../node_modules/flatpickr/dist/flatpickr.css';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 // import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 // import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
@@ -39,6 +43,7 @@ import { PipesModule } from '../pipes/pipes.module';
 // import { ProfileComponent } from './profile/profile.component';
 // import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CalendariComponent } from './calendari/calendari.component';
+import { Calendari2Component } from './calendari/calendari2.component';
 // import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 // import { HospitalesComponent } from './hospitales/hospitales.component';
 // import { MedicosComponent } from './medicos/medicos.component';
@@ -71,6 +76,7 @@ import { PagamentsComponent } from './pagaments/pagaments.component';
 import { PagamentComponent } from './pagaments/pagament.component';
 
 import { ProfileComponent} from './profile/profile.component';
+import {NgxPrintModule} from 'ngx-print';
 
 const routes: Routes = [
     {
@@ -163,7 +169,7 @@ const routes: Routes = [
           title: 'Starter Page',
           urls: [{ title: 'Calendari', url: '/calendari' }, { title: 'Gestió de calendari' }]
         },
-        component: CalendariComponent
+        component: Calendari2Component
     },
     {
         path: 'notificacions',
@@ -225,6 +231,8 @@ const routes: Routes = [
         PressupostosComponent,
         UsuariosComponent,
         CalendariComponent,
+        Calendari2Component,
+        CalendarHeaderComponent,
         // PagesComponent,
         // DashboardComponent,
         // ProgressComponent,
@@ -261,7 +269,8 @@ const routes: Routes = [
         ProfileComponent
     ],
     exports: [
-        CalendariComponent
+        Calendari2Component,
+        CalendarHeaderComponent
         // DashboardComponent,
         // ProgressComponent,
         // Graficas1Component
@@ -276,13 +285,15 @@ const routes: Routes = [
         FlatpickrModule.forRoot(),
         ChartsModule,
         PipesModule,
+        NgxPaginationModule,
+        NgxPrintModule,
+        NgbModalModule,
         CalendarModule.forRoot({
-            provide: DateAdapter,
-            useFactory: adapterFactory
-          }),
+          provide: DateAdapter,
+          useFactory: adapterFactory
+        }),
+        
         RouterModule.forChild(routes)
-    ],
-    providers: [
-      ],
+    ]
 })
 export class PagesModule { }

@@ -29,6 +29,7 @@
                     <thead>
                         <tr>
                             <th>Img</th>
+                            <th>Nom - Identificació</th>
                             <th>MArca</th>
                             <th>Model</th>
                             <th>Matricula</th>
@@ -39,6 +40,9 @@
                         <tr *ngFor="let vehicle of vehicles">
                             <td>
                                 <img [src]="vehicle.img | imagen:'vehicle'" class="img-50 img-circle">
+                            </td>
+                            <td>
+                                {{ vehicle.nom }}
                             </td>
                             <td>
                                 {{ vehicle.marca }}

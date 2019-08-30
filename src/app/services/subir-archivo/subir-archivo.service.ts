@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS } from '../../component/config';
 
 @Injectable()
 export class SubirArchivoService {

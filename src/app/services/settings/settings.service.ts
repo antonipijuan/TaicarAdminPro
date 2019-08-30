@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+// import { DOCUMENT } from '@angular/platform-browser';
 
 @Injectable()
 export class SettingsService {
@@ -9,9 +9,9 @@ export class SettingsService {
     tema: 'default'
   };
 
-  constructor( @Inject(DOCUMENT) private _document ) {
+/*   constructor( @Inject(DOCUMENT) private _document ) {
     this.cargarAjustes();
-  }
+  } */
 
   guardarAjustes() {
     // console.log('Guardado en el localStorage');
@@ -37,7 +37,7 @@ export class SettingsService {
 
 
     let url = `assets/css/colors/${ tema }.css`;
-    this._document.getElementById('tema').setAttribute('href', url );
+    // this._document.getElementById('tema').setAttribute('href', url );
 
     this.ajustes.tema = tema;
     this.ajustes.temaUrl = url;

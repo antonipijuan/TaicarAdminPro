@@ -5,6 +5,9 @@
                 <!-- <label for="typeahead-basic">Usuaris:</label> -->
                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" (selectItem)="selectedItem($event)" placeholder="Cerca client ..." [ngbTypeahead]="search" />
                 <!-- <input #input (keyup)="buscarPersona( input.value )" type="text" class="form-control" placeholder="Buscar usuario..."> -->
+                <div class="text-right">
+                    <input id="typeahead-basic" type="text" class="form-control" placeholder="filter" [(ngModel)]="filter">
+                </div>
             </div>
         </div>
     </div>
@@ -70,7 +73,7 @@
                     </thead>
                     <tbody>
 
-                        <tr *ngFor="let pressupost of pressupostos">
+                        <tr *ngFor="let pressupost of pressupostos | stringFilter: filter | paginate: { itemsPerPage: 15, currentPage: p }">
                             <td>
                                 {{ pressupost.num }}
                             </td>
@@ -102,6 +105,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
             </div>
         </div>
@@ -120,6 +124,7 @@
             <div class="form-group">
                 <label>Client</label>
                 <input #input (keyup)="buscarClient( input.value )" type="text" class="form-control" placeholder="Buscar client..."></div>
+
 
         </form>
         <div class="row">
