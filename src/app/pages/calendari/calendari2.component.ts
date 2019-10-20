@@ -62,7 +62,11 @@ import { CustomDateFormatter } from './custom-date.formatter.provider';
     }
   ]
 })
-export class Calendari2Component implements OnInit{
+export class Calendari2Component implements OnInit {
+
+  constructor(private modal: NgbModal,
+    public _reservaService: ReservaService,
+    public _vehicleService: VehicleService) {}
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   reserves: Reserva[] = [];
@@ -146,19 +150,29 @@ export class Calendari2Component implements OnInit{
     } */
   ];
 
+  activeDayIsOpen = true;
+
   carregarEvents() {
+    let vcolor = null;
+
     this._reservaService.carregarReserves()
       .subscribe( resp => {
         this.reserves = resp;
         console.log(resp);
         console.log(this.reserves);
         for (const entry of this.reserves) {
+
+          if (entry.estat === 'confirmada' || entry.estat === 'facturada') {
+            vcolor = this.obtenirColor(entry.vehicle['color']);
+          } else {
+            vcolor = colors.red;
+          }
           this.events.push({
             title: 'Reserva:' + entry._id + ' / ' + 'Vehicle:' + entry.vehicle['matricula'] + ' / '
                   + 'Client:' + entry.pressupost['client'],
-            start: startOfDay(entry.data_inicial),
-            end: endOfDay(entry.data_final),
-            color: this.obtenirColor(entry.vehicle['color']),
+            start: startOfDay(new Date(entry.data_inicial)),
+            end: endOfDay(new Date(entry.data_final)),
+            color: vcolor,
             draggable: true,
             resizable: {
               beforeStart: true,
@@ -169,12 +183,6 @@ export class Calendari2Component implements OnInit{
         }
       });
   }
-
-  activeDayIsOpen = true;
-
-  constructor(private modal: NgbModal,
-    public _reservaService: ReservaService,
-    public _vehicleService: VehicleService) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -261,6 +269,3 @@ export class Calendari2Component implements OnInit{
 
   }
 }
-
-
-  

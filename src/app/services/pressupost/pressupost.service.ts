@@ -41,7 +41,7 @@ export class PressupostService {
         });
   }
 
-  carregarPressupostosVigents(){
+  carregarPressupostosVigents() {
     const url = URL_SERVICIOS + '/pressupost/vigents';
     return this.http.get( url )
         .map( (resp: any) => {

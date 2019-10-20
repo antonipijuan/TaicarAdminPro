@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ImagenPipe } from './imagen.pipe';
 import { DataPipe } from './data.pipe';
 import { stringFilterPipe } from './stringFilter.pipe';
+import { LabelColorPipe } from './labelcolor.pipe';
 
 
 @NgModule({
@@ -9,12 +10,15 @@ import { stringFilterPipe } from './stringFilter.pipe';
   declarations: [
     ImagenPipe,
     DataPipe,
-    stringFilterPipe
+    stringFilterPipe,
+    LabelColorPipe
+
   ],
   exports: [
     ImagenPipe,
     DataPipe,
-    stringFilterPipe
+    stringFilterPipe,
+    LabelColorPipe
   ]
 })
 export class PipesModule { }

@@ -49,13 +49,13 @@
     </div>
     <div class="col-md-4">
         <div class="btn-group">
-            <div class="btn btn-primary" (click)="view = 'month'" [class.active]="view === 'month'">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === 'month'">
                 Month
             </div>
-            <div class="btn btn-primary" (click)="view = 'week'" [class.active]="view === 'week'">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === 'week'">
                 Week
             </div>
-            <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === 'day'">
                 Day
             </div>
         </div>
@@ -72,24 +72,35 @@
     </mwl-calendar-day-view>
 </div>
 <div class="row">
-
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div *ngIf="!cargando" class="card earning-widget">
-                    <div class="card-body b-t">
-                        <table class="table v-middle no-border">
-                            <tbody>
-                                <tr *ngFor="let vehicle of vehicles">
-                                    <td style="width:40px"><img src="../../../assets/images/minicar1.jpeg" width="50" class="img-circle" alt="logo"></td>
-                                    <td>{{vehicle.nom}}</td>
-                                    <td class="text-right"><span class="label label-light-info">{{vehicle.color}}</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <h4 class="card-title">Vehicles</h4>
+                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Vehicle</th>
+                                <th>Matricula</th>
+                                <th>Color</th>
 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vehicle of vehicles">
+                                <td>1</td>
+                                <td style="width:40px"><img src="../../../assets/images/minicar1.jpeg" width="50" class="img-circle" alt="logo"></td>
+                                <td>{{vehicle.nom}}</td>
+                                <td class="text-right">{{vehicle.color}}</td>
+                                <td>
+                                    <div [ngClass]="{'label label-info': true}">Color</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -30,7 +30,15 @@
                         </div>
                         <div class="col-md-6 ">
                             <div class="pull-right">
-                                <h4 class="font-bold">{{ pressupost.client.nombre }}</h4>
+                                <address>
+                                            <h4 class="font-bold">{{ pressupost.client.nombre }}</h4>
+                                            <p class="text-muted m-l-5">{{ pressupost.client.dni }}
+                                                    <br/> {{ pressupost.client.direccio }}
+                                                <br/> {{ pressupost.client.poblacio }}
+                                                <br/> XXXXX,
+                                                <br/> {{ pressupost.client.email }}</p>
+                                        </address>
+
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -69,20 +77,23 @@
                         <div class="col-md-12 ">
                             <div class="pull-right m-t-30 text-right ">
                                 <p>Sub - Total brut: {{ pressupost.preu_brut }}</p>
-                                <p>IVA (16%) : $XXX </p>
+                                <p>IVA (21%) : {{ pressupost.preu_brut * 0.21 }} </p>
                                 <hr>
                                 <h3><b>Total :</b> {{ pressupost.preu_net }}</h3>
                             </div>
                             <div class="clearfix"></div>
                             <hr>
                             <div class="col text-right">
-                                <div *ngIf="!esnou" ngbDropdown placement="top-right" class="d-inline-block">
-                                    <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Gestions</button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                        <button *ngIf="pressupost.estat=='vigent'" (click)="confirmarPressupost(pressupost)" class="dropdown-item">Confirma</button>
-                                        <button *ngIf="pressupost.estat=='vigent'" (click)="anulaPressupost(pressupost)" class="dropdown-item">Anula</button>
+                                <div *ngIf="!esnou" ngbDropdown>
+                                    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Toggle</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                        <button *ngIf="pressupost.estat=='vigent'" ngbDropdownItem (click)="confirmarPressupost(pressupost)">Confirma</button>
+                                        <button *ngIf="pressupost.estat=='vigent'" ngbDropdownItem (click)="anulaPressupost(pressupost)">Anula</button>
                                         <button *ngIf="pressupost.estat=='vigent' || pressupost.estat=='confirmat'" (click)="facturarPressupost(pressupost)" class="dropdown-item">Factura</button>
                                     </div>
+                                    <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
+                                    <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
+                                    <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button>
                                 </div>
                                 <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
                                 <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>

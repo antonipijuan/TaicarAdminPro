@@ -8,7 +8,7 @@
                     <label for="vehicle">Vehicle</label>
                     <select [(ngModel)]="despesa.vehicle" id="vehicle" name="vehicle" class="form-control" required>
                     <option value=" ">Seleccione Vehicle</option>
-                    <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
+                    <option *ngFor="let vehicle of vehicles2" [value]="vehicle._id">
                       {{ vehicle.nom }} - {{ vehicle.marca }} {{ vehicle.model }}
                     </option>
                   </select>

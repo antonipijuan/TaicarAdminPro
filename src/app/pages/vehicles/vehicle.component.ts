@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../../component/modal-upload/modal-upload.service';
 import { ReservaService } from '../../services/reserva/reserva.service';
+import { DespesaService } from '../../services/despesa/despesa.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -20,7 +21,8 @@ export class VehicleComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public _modalUploadService: ModalUploadService,
-    public _reservaService: ReservaService
+    public _reservaService: ReservaService,
+    public _despesaService: DespesaService
   ) {
     activatedRoute.params.subscribe( params => {
 
@@ -94,6 +96,14 @@ export class VehicleComponent implements OnInit {
           console.log(resp);
         });
   }
+
+  esborraDespeses() {
+
+    this._despesaService.borrarDespesesVehicle(this.vehicle._id)
+      .subscribe( resp => {
+        console.log(resp);
+      });
+}
   // cambioHospital( id: string ) {
 
   //   this._hospitalService.obtenerHospital( id )

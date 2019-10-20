@@ -18,6 +18,7 @@ import { Reserva } from '../../models/reserva.model';
 import { map } from 'rxjs/operator/map';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 import { IAlert } from '../../component/alert/alert.component';
 import { FacturaDetall } from 'src/app/models/facturadetall.model';
 import Swal from 'sweetalert2';
@@ -64,11 +65,14 @@ export class PressupostComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public _reservaService: ReservaService,
     public modalService: NgbModal,
-    public _facturaService: FacturaService
+    public _facturaService: FacturaService,
+    config: NgbDropdownConfig
 
   ) {
     activatedRoute.params.subscribe( params => {
 
+    config.placement = 'top-left';
+    config.autoClose = false;
       const id = params['id?'];
       const client = params['idclient?'];
 
@@ -226,7 +230,7 @@ export class PressupostComponent implements OnInit {
                         this._reservaService.guardarReserva(pressupost_detall)
                           .subscribe( reserva => {
                             console.log(reserva);
-                            this._reservaService.reservadatesBooking(pressupost_detall.data_inicial,
+                            this._reservaService.reservadatesBookingPost(pressupost_detall.data_inicial,
                               pressupost_detall.data_final, pressupost_detall.vehicle, vpressupost)
                               .subscribe( resp => {
                                 console.log(resp);
@@ -342,7 +346,7 @@ export class PressupostComponent implements OnInit {
     console.log(vpreu);
 
     this.pressupost.preu_brut = vpreu;
-    this.pressupost.preu_net = vpreu - (vpreu * 0.1);
+    this.pressupost.preu_net = vpreu + (vpreu * 0.21);
 
   }
 
@@ -422,6 +426,9 @@ export class PressupostComponent implements OnInit {
   }
 
   facturarPressupost( vpressupost: Pressupost) {
+
+    let ultim = 0;
+
     Swal.fire({
       title: 'Estàs segur de facturar aquest pressupost?',
       text: 'You wont be able to revert this!',
@@ -444,7 +451,12 @@ export class PressupostComponent implements OnInit {
                   this._facturaService.obtenirultimnum(2019)
                     .subscribe( numeracio => {
                       console.log(numeracio);
-                      this._facturaService.crearFactura(vpressupost, vpressupost.detall, numeracio[0].num_correlatiu)
+                      if (!numeracio) {
+                        ultim = 1;
+                      } else {
+                        ultim = numeracio[0].num_correlatiu;
+                      }
+                      this._facturaService.crearFactura(vpressupost, vpressupost.detall, ultim + 1)
                     .subscribe( factura => {
                       console.log(factura);
                     });

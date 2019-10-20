@@ -21,7 +21,8 @@ import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-pressupostos',
-  templateUrl: './pressupostos.component.html'
+  templateUrl: './pressupostos.component.html',
+  styleUrls: ['../persones/persones.styles.css']
 
 })
 export class PressupostosComponent implements OnInit {
@@ -31,17 +32,19 @@ export class PressupostosComponent implements OnInit {
   public model: any;
   public exampleData: Array<Select2OptionData>;
 
-  public filter: string = '';
+  public filter = '';
   public config: PaginationInstance = {
     id: 'advanced',
     itemsPerPage: 15,
     currentPage: 1
-};  
+};
   carregant = false;
   clickedItem;
   nomsclients = [];
   clients: Persona[] = [];
   pressupostos: Pressupost[] = [];
+  page = 1;
+  p: number;
 
   constructor(
 
@@ -179,7 +182,7 @@ export class PressupostosComponent implements OnInit {
       showCancelButton: true
     }).then((result) => {
       if (result.value) {
-        this._reservaService.lliuradatesBookingPerPressupos(termino)
+        this._reservaService.esborraDatesBookingPerPressupost(termino)
         .subscribe( resp => {
           console.log(resp);
           this._pressupostosService.borrarPressupost(termino)

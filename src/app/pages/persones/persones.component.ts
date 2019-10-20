@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import Swal from 'sweetalert2';
-import {PaginationInstance} from 'ngx-pagination';
+// import {PaginationInstance} from 'ngx-pagination';
 // import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 
@@ -19,36 +19,36 @@ import {PaginationInstance} from 'ngx-pagination';
 })
 export class PersonesComponent implements OnInit {
 
-  persones: Persona[] = [];
-  // desde = 0;
-  public filter: string = '';
-  public config: PaginationInstance = {
-    id: 'advanced',
-    itemsPerPage: 15,
-    currentPage: 1
-};  
-
-public labels: any = {
-  previousLabel: 'Previous',
-  nextLabel: 'Next',
-  screenReaderPaginationLabel: 'Pagination',
-  screenReaderPageLabel: 'page',
-  screenReaderCurrentLabel: `Estàs a ...`
-};
-pageSize: number;
-  
   totalPersones: Number;
 
   clientstots: Persona[] = [];
-  
+
   total: Promise<number>;
   tpers: String;
   totalPagines: Number;
   paginaActual: Number;
   page = 1;
-  totalRegistros = 0;
 
-  cargando = true;
+  totalRegistros = 0;
+  persones: Persona[] = [];
+  // desde = 0;
+  public filter = '';
+  public config = {
+    itemsPerPage: 15,
+    currentPage: 1,
+    totalItems: this.totalRegistros
+};
+
+/* public labels: any = {
+  previousLabel: 'Previous',
+  nextLabel: 'Next',
+  screenReaderPaginationLabel: 'Pagination',
+  screenReaderPageLabel: 'page',
+  screenReaderCurrentLabel: `Estàs a ...`
+}; */
+// pageSize: number;
+
+  cargando = false;
   public model: any;
 
 
@@ -57,13 +57,13 @@ pageSize: number;
     public _modalUploadService: ModalUploadService
   ) { }
 
-  search = (text$: Observable<string>) =>
+/*   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term.length < 2 ? []
         : this.persones.filter(v => v.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+    ) */
 
   ngOnInit() {
     this.cargando = true;
@@ -74,7 +74,7 @@ pageSize: number;
           .subscribe( resp => this.cargarPersones() ); */
   }
 
-  public onPageChange(pageNum: number): void {
+ /*  public onPageChange(pageNum: number): void {
     console.log(pageNum);
     this.pageSize = this.config.itemsPerPage * (pageNum - 1);
     if (this.pageSize === 0) {
@@ -94,6 +94,9 @@ pageSize: number;
 
   public changePagesize(num: number): void {
     this.config.itemsPerPage = this.pageSize + num;
+  } */
+  pageChanged(event) {
+    this.config.currentPage = event;
   }
 
   paginarPersones(pagin: number) {

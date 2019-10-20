@@ -29,6 +29,17 @@ export class DespesaService {
         });
   }
 
+  cargarDespesesTotes() {
+
+    const url = URL_SERVICIOS + '/despesa';
+    return this.http.get( url )
+        .map( (resp: any) => {
+          this.totalDespeses = resp.total;
+          return resp.despeses;
+        });
+
+  }
+
   paginarDespesa(vpagina: number = 0) {
     const url = URL_SERVICIOS + '/despesa/paginar/' + vpagina;
     return this.http.get( url )
@@ -89,6 +100,14 @@ export class DespesaService {
         url += '?token=' + this._usuarioService.token;
         return this.http.delete( url )
                     .map( (resp: any) => resp.despesa );
+      }
+
+      borrarDespesesVehicle( idvehicle: string) {
+
+        let url = URL_SERVICIOS + '/despesa/pervehicle/' + idvehicle;
+        url += '?token=' + this._usuarioService.token;
+        return this.http.delete( url )
+                    .map( (resp: any) => resp.despeses_esborrades );
       }
 
       cargarDespesa( termino: string ) {

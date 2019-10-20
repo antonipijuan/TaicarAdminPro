@@ -56,7 +56,7 @@
                     </thead>
                     <tbody>
 
-                        <tr *ngFor="let despesa of despeses">
+                        <tr *ngFor="let despesa of despeses | stringFilter: filter | paginate: config ">
                             <td>
                                 {{ despesa._id }}
                             </td>
@@ -86,9 +86,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 
             </div>
-            <nav aria-label="Page navigation example">
+            <!--             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
                         <a class="page-link" (click)="paginarDespeses(1)" aria-label="Previous">
@@ -106,11 +107,14 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
             <!-- 
             <ngb-pagination [collectionSize]="totalDespeses" (pageChange)="paginarDespeses(paginaActual)" [(page)]="paginaActual" aria-label="Default pagination" *ngIf="!carregant">
 
             </ngb-pagination> -->
+
+
+
         </div>
     </div>
 </div>

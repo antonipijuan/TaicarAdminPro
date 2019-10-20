@@ -7,6 +7,7 @@ export class Reserva {
         public vehicle: string,
         public data_inicial: string,
         public data_final: string,
+        public estat?: string,
         public _id?: string
     ) { }
 }

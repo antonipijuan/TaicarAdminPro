@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 
 import * as dadesTaula from './datos_despeses';
 import Swal from 'sweetalert2';
+import { ModalUploadService } from 'src/app/component/modal-upload/modal-upload.service';
 
 @Component({
   selector: 'app-despeses',
@@ -30,12 +31,24 @@ export class DespesesComponent implements OnInit {
 
   despesa: Despesa = new Despesa('', 0, null , '', '', '');
   vehicles: Vehicle[] = [];
+
+
+  total: Promise<number>;
+
+  totalRegistros = 0;
   despeses: Despesa[] = [];
   clickedItem: Vehicle;
 
-  source: LocalDataSource;
+  public filter = '';
+  public config = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: this.totalRegistros
+};
 
-  settings = dadesTaula.settings;
+  // source: LocalDataSource;
+
+  // settings = dadesTaula.settings;
   carregant = false;
   constructor(
     public _despesaService: DespesaService,
@@ -45,21 +58,22 @@ export class DespesesComponent implements OnInit {
 
   ngOnInit() {
     this.carregant = true;
-    this.paginarDespeses(1);
+    // this.paginarDespeses(1);
+    this.cargarDespesesTotes();
     // this.carregarDespeses();
     this.carregarVehicles();
-    this.carregant = false;
+    // this.carregant = false;
   }
-
+/*
   carregarDespeses(i: number = 0) {
     this._despesaService.carregarDespeses(i)
       .subscribe( despeses => {
         this.despeses = despeses;
         this.source = new LocalDataSource(this.despeses);
       });
-  }
+  } */
 
-  paginarDespeses(pagin: number) {
+/*   paginarDespeses(pagin: number) {
     this._despesaService.paginarDespesa(pagin)
       .subscribe( resposta => {
         this.despeses = resposta.despeses;
@@ -69,18 +83,44 @@ export class DespesesComponent implements OnInit {
         this.carregant = false;
 
       });
+  } */
+  pageChanged(event) {
+    this.config.currentPage = event;
+  }
+
+  paginarDespeses(pagin: number) {
+    console.log(pagin);
+    this._despesaService.paginarDespesa(pagin)
+      .subscribe( resposta => {
+        this.despeses = resposta.despeses;
+        this.total = resposta.conteo;
+        this.totalPagines = resposta.totalPagines;
+        this.paginaActual = resposta.pag_actual;
+        this.carregant = false;
+
+      });
+  }
+
+  cargarDespesesTotes() {
+    this._despesaService.cargarDespesesTotes()
+      .subscribe( despeses => {
+        this.despeses = despeses,
+        this.totalRegistros = despeses.total;
+        this.carregant = false;
+      });
+
   }
 
   guardaDespesa( vdesp: Despesa ) {
     this._despesaService.guardarDespesa(vdesp)
         .subscribe( despesa => {
           this.despesa = despesa;
-          this.despesa = null;
-          this.carregarDespeses();
+          this.despesa = new Despesa('', 0, null , '', '', '');
+          this.cargarDespesesTotes();
           this.modalService.dismissAll();
         });
   }
-
+/*
   search = (text$: Observable<string>) =>
   text$.pipe(
     debounceTime(200),
@@ -95,11 +135,11 @@ formatter = (x: {nom: string}) => x.nom;
       this.clickedItem = item.item;
       console.log(item);
       this.buscarDespeses(this.clickedItem._id);
-    }
+    } */
 
   buscarDespeses( termino: string ) {
     if (termino.length <= 0) {
-      this.carregarDespeses();
+      this.cargarDespesesTotes();
       return;
     }
     this.despeses = [];
@@ -126,7 +166,7 @@ formatter = (x: {nom: string}) => x.nom;
     .then( result => {
       if (result.value) {
         this._despesaService.borrarDespesa( vdespesa )
-            .subscribe( () =>  this.carregarDespeses() );
+            .subscribe( () =>  this.cargarDespesesTotes() );
       }
     });
   }

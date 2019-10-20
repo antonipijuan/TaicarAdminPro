@@ -36,7 +36,8 @@ export class ReservaService {
     const reserva = new Reserva(vpressupostdetall.id_pressupost,
                                 vpressupostdetall.vehicle,
                                 vpressupostdetall.data_inicial,
-                                vpressupostdetall.data_final);
+                                vpressupostdetall.data_final,
+                                );
 
     let url = URL_SERVICIOS + '/reserva';
 
@@ -119,6 +120,18 @@ export class ReservaService {
               });
         }
 
+        reservadatesBookingPost(datainici: string, datafi: string, vehicle: string, vpressu: Pressupost) {
+
+          let url = URL_SERVICIOS + '/booking/post_actualitzarperiodebooking/' + vehicle + '/' + datainici + '/' + datafi;
+          url += '?token=' + this._usuarioService.token;
+          console.log(url);
+          console.log(vpressu);
+          return this.http.post( url, vpressu )
+              .map( (resp: any) => {
+                return resp;
+              });
+        }
+
         lliuradatesBooking(datainici: string, datafi: string, vehicle: string, vpressu: Pressupost) {
 
           let url = URL_SERVICIOS + '/booking/actualitzarperiodebooking/' + vehicle['_id'] + '/' + datainici + '/' + datafi + '/true';
@@ -136,6 +149,17 @@ export class ReservaService {
           url += '?token=' + this._usuarioService.token;
           console.log(url);
           return this.http.get( url )
+              .map( (resp: any) => {
+                return resp;
+              });
+        }
+
+        esborraDatesBookingPerPressupost( idpressupost: string) {
+
+          let url = URL_SERVICIOS + '/booking/esborrarperPressupost/' + idpressupost;
+          url += '?token=' + this._usuarioService.token;
+          console.log(url);
+          return this.http.delete( url )
               .map( (resp: any) => {
                 return resp;
               });

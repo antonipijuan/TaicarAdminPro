@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,4 +33,4 @@ const Approutes: Routes = [
   imports: [RouterModule.forRoot(AppRoutes)],
   exports: [RouterModule]
 }) */
-export const APP_ROUTES = RouterModule.forRoot( Approutes, { useHash: true } );
+export const APP_ROUTES = RouterModule.forRoot( Approutes, { useHash: true} );

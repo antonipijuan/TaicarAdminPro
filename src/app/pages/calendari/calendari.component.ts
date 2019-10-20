@@ -48,7 +48,7 @@ const colors: any = {
   templateUrl: './calendari.component.html'
 })
 export class CalendariComponent implements OnInit {
-  //@ViewChild('modalContent') modalContent: TemplateRef<any>;
+  // @ViewChild('modalContent') modalContent: TemplateRef<any>;
   @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   reserves: Reserva[] = [];

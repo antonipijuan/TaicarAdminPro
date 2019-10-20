@@ -54,7 +54,11 @@ export class FacturaService {
                   this.guardaDetall(detallfactura)
                       .subscribe( facturadetall => {
                         console.log(facturadetall);
-                          return resp.facturadetall;
+                          this.suma1ultimnum(2019)
+                            .subscribe( num => {
+                              console.log(num);
+                              return resp.facturadetall;
+                            });
                           });
                 }
                 return resp.factura;
@@ -63,10 +67,10 @@ export class FacturaService {
 
       }
       carregarFactura( id: string) {
-        const url = URL_SERVICIOS + '/factura/' + id;
+        const url = URL_SERVICIOS + '/factura/consultaId/' + id;
 
         return this.http.get( url )
-                  .map( (resp: any) => resp.factura );
+                  .map( (resp: any) => resp.factures );
       }
 
       actualitzar_idfactura_pressupostdetall( pressupost: string, factura: string) {
@@ -117,6 +121,14 @@ export class FacturaService {
 
           obtenirultimnum( anualitat: number ) {
             let url = URL_SERVICIOS + '/numeraciofact/ultim/' + anualitat;
+             url += '?token=' + this._usuarioService.token;
+            return this.http.get( url )
+                .map( (resp: any) => {
+                   return resp.numeracio;
+                });
+          }
+          suma1ultimnum( anualitat: number ) {
+            let url = URL_SERVICIOS + '/numeraciofact/augmentaNumeracio/' + anualitat;
              url += '?token=' + this._usuarioService.token;
             return this.http.get( url )
                 .map( (resp: any) => {

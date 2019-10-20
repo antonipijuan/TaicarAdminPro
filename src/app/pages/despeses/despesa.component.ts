@@ -27,11 +27,11 @@ import { IAlert } from '../../component/alert/alert.component';
 
 })
 export class DespesaComponent implements OnInit {
-  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
+  // @ViewChild('modalContent2', {static: true}) modalContent2: TemplateRef<any>;
 
 
   carregant = true;
-  vehicles: Vehicle[] = [];
+  vehicles2: Vehicle[] = [];
   esnou: boolean;
  despesa: Despesa;
   closeResult: string;
@@ -43,7 +43,7 @@ export class DespesaComponent implements OnInit {
     public _vehiclesService: VehicleService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public modalService: NgbModal
+    public modalService2: NgbModal
 
   ) {
     activatedRoute.params.subscribe( params => {
@@ -98,7 +98,7 @@ export class DespesaComponent implements OnInit {
           this.despesa = despesa;
           this.despesa = null;
           // this.carregarDespeses();
-          this.modalService.dismissAll();
+          this.modalService2.dismissAll();
           this.router.navigate(['/despeses' ]);
         });
 
@@ -108,7 +108,7 @@ export class DespesaComponent implements OnInit {
         this.despesa = despesa;
         this.despesa = null;
         // this.carregarDespeses();
-        this.modalService.dismissAll();
+        this.modalService2.dismissAll();
         this.router.navigate(['/despeses' ]);
       });
     }
@@ -135,13 +135,13 @@ export class DespesaComponent implements OnInit {
     this._vehiclesService.cargarVehicles()
     .subscribe( vehicles => {
 
-      this.vehicles = vehicles;
+      this.vehicles2 = vehicles;
     });
   }
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService2.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

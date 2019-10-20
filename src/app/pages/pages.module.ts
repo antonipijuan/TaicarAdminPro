@@ -292,7 +292,6 @@ const routes: Routes = [
           provide: DateAdapter,
           useFactory: adapterFactory
         }),
-        
         RouterModule.forChild(routes)
     ]
 })
