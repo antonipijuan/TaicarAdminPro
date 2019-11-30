@@ -110,6 +110,17 @@ export class FacturaService {
               });
           }
 
+          actualitzaEstat( fact: String, estat: String) {
+            let url = URL_SERVICIOS + '/factura/actualitzaEstat/' +  fact + '/' + estat;
+
+              url += '?token=' + this._usuarioService.token;
+              return this.http.put( url, null )
+                  .map( (resp: any) => {
+                    // swal('Pressupost Detall Creado', pressupost._id, 'success');
+                    return resp.factura;
+                  });
+              }
+
           carregaFacturesDetall( id_factura: string ) {
             let url = URL_SERVICIOS + '/facturadetall/perfactura/' + id_factura;
              url += '?token=' + this._usuarioService.token;

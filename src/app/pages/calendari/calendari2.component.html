@@ -85,6 +85,7 @@
                                 <th>Vehicle</th>
                                 <th>Matricula</th>
                                 <th>Color</th>
+                                <th>Color</th>
 
                             </tr>
                         </thead>
@@ -95,8 +96,11 @@
                                 <td>{{vehicle.nom}}</td>
                                 <td class="text-right">{{vehicle.color}}</td>
                                 <td>
-                                    <div [ngClass]="{'label label-info': true}">Color</div>
+                                    <!-- <div [ngClass]="{'label label-info': true}">Color</div> -->
+                                    <div class="color-box" [style.background]="vehicle.color" (click)="selectedColor='color1'">{{vehicle.color}}</div>
+
                                 </td>
+
                             </tr>
                         </tbody>
                     </table>

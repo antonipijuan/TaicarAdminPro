@@ -1,4 +1,4 @@
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="!carregant">
 
     <div class="col-md-6">
         <div class="card card-body">
@@ -33,11 +33,13 @@
                         </div>
                         <div class="form-group">
                             <label>Color</label>
-                            <select [(ngModel)]="vehicle.color" name="color" class="form-control" required>
+                            <!--           <select [(ngModel)]="vehicle.color" name="color" class="form-control" required>
                                     <option value="red">Red</option>
                                     <option value="blue">Blue</option>
                                     <option value="yellow">Yellow</option>
-                               </select>
+                               </select> -->
+                            <input class="form-control" [(colorPicker)]="vehicle.color" [style.background]="vehicle.color" />
+
                         </div>
                         <div class="form-group">
                             <label>Data d'adquisició</label>

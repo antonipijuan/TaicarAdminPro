@@ -47,8 +47,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div class="text-right">
+                    <input id="typeahead-basic" type="text" class="form-control" placeholder="filter" [(ngModel)]="filter">
+                </div>
 
-                <input #factu (keyup)="buscarFactura( factu.value )" type="text" class="form-control" placeholder="Buscar factura...">
+                <!-- <input #factu (keyup)="buscarFactura( factu.value )" type="text" class="form-control" placeholder="Buscar factura..."> -->
 
             </div>
         </div>
@@ -74,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let factura of factures">
+                        <tr *ngFor="let factura of factures | stringFilter: filter | paginate: { itemsPerPage: 15, currentPage: p } ">
                             <td>
                                 {{ factura.num }}
                             </td>
@@ -99,6 +102,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
             </div>
         </div>

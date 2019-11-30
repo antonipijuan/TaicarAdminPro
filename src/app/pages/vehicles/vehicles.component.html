@@ -39,7 +39,7 @@
                     <tbody>
                         <tr *ngFor="let vehicle of vehicles">
                             <td>
-                                <img [src]="vehicle.img | imagen:'vehicle'" class="img-50 img-circle">
+                                <img (click)="mostrarModal( vehicle._id )" [src]="vehicle.img | imagen:'vehicle'" class="img-50 img-circle">
                             </td>
                             <td>
                                 {{ vehicle.nom }}

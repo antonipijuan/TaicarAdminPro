@@ -72,10 +72,20 @@
                     </div>
                     <div class="clearfix"></div>
                     <hr>
+
                     <div class="text-right">
+
                         <button class="btn btn-danger" type="submit"> Proceed to payment </button>
                         <button class="btn btn-info" [routerLink]="['/facturacio']"> Tanca </button>
                         <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Estat</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button (click)="canviaEstat('Pagada')" ngbDropdownItem>Pagada</button>
+                                <button (click)="canviaEstat('No Pagada')" ngbDropdownItem>No pagada</button>
+                                <button (click)="canviaEstat('Anulada')" ngbDropdownItem>Anulada</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

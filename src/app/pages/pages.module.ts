@@ -78,6 +78,8 @@ import { PagamentComponent } from './pagaments/pagament.component';
 import { ProfileComponent} from './profile/profile.component';
 import {NgxPrintModule} from 'ngx-print';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 const routes: Routes = [
     {
     path: '',
@@ -288,6 +290,7 @@ const routes: Routes = [
         NgxPaginationModule,
         NgxPrintModule,
         NgbModalModule,
+        ColorPickerModule,
         CalendarModule.forRoot({
           provide: DateAdapter,
           useFactory: adapterFactory

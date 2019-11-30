@@ -101,8 +101,10 @@ export class PagamentComponent implements OnInit {
           .subscribe( pagament => {
             console.log(pagament);
             console.log('alta de pagament realitzat');
+
             // this.cargarFactura(this.id);
           });
+
         });
       // this._facturaService.actualitzar_importsFactra(vpago.import_pagat, this.factura._id)
       //   .subscribe ( actual => {

@@ -12,6 +12,7 @@ export class Persona {
         public telefon?: string,
         public observacions?: string,
         public codiclient?: string,
+        public codipostal?: string,
         public _id?: string
     ) { }
 }

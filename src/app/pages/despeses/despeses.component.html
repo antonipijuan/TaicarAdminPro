@@ -30,9 +30,9 @@
 
     <ngb-highlight [result]="r.nom" [term]="t"></ngb-highlight>
 </ng-template>
-<label for="typeahead-basic">Search for a state:</label>
+<!-- <label for="typeahead-basic">Search for a state:</label>
 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [inputFormatter]="formatter" (selectItem)="selectedItem($event)" />
-
+ -->
 <div class="row" *ngIf="!carregant">
     <div class="col-12">
         <div class="card">

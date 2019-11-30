@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../../component/modal-upload/modal-upload.service';
 import { ReservaService } from '../../services/reserva/reserva.service';
 import { DespesaService } from '../../services/despesa/despesa.service';
+import { ColorPickerService, Cmyk } from 'ngx-color-picker';
+
 
 @Component({
   selector: 'app-vehicle',
@@ -16,6 +18,9 @@ export class VehicleComponent implements OnInit {
 
   vehicle: Vehicle = new Vehicle('', '', '', '', '', 0, '', '', null , '', 0, 0, 0, 0,  '');
 
+  // public color1: string = '#2889e9';
+  carregant = false;
+
   constructor(
     public _vehicleService: VehicleService,
     public router: Router,
@@ -24,12 +29,14 @@ export class VehicleComponent implements OnInit {
     public _reservaService: ReservaService,
     public _despesaService: DespesaService
   ) {
+    this.carregant = true;
     activatedRoute.params.subscribe( params => {
 
       const id = params['id'];
 
       if ( id !== 'nuevo' ) {
         this.cargarVehicle( id );
+
       }
 
     });
@@ -43,6 +50,8 @@ export class VehicleComponent implements OnInit {
     this._vehicleService.carregarVehicle( id )
           .subscribe( vehicle => {
             this.vehicle = vehicle;
+            this.carregant = false;
+            console.log(this.vehicle);
           });
   }
 

@@ -58,6 +58,7 @@ export class PressupostosComponent implements OnInit {
     this.carregant = true;
     this.carregarPressupostosVigents();
     this.carregarClients();
+/*
     this.exampleData = [
       {
         id: 'basic1',
@@ -76,10 +77,10 @@ export class PressupostosComponent implements OnInit {
         id: 'basic4',
         text: 'Basic 4'
       }
-    ];
+    ]; */
     this.carregant = false;
   }
-
+/*
   search2 = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
@@ -91,7 +92,7 @@ export class PressupostosComponent implements OnInit {
     selectedItem(item) {
       this.clickedItem = item.item;
       console.log(item);
-    }
+    } */
 
 
 
@@ -122,13 +123,11 @@ export class PressupostosComponent implements OnInit {
         .subscribe( persones => {
           console.log(persones);
           this.clients = persones;
+          // for (let _i = 0; _i < this.clients.length; _i++) {
+          //     this.nomsclients.push(this.clients[_i].nombre);
 
-
-          for (let _i = 0; _i < this.clients.length; _i++) {
-              this.nomsclients.push(this.clients[_i].nombre);
-
-          }
-          console.log(this.nomsclients);
+          // }
+          // console.log(this.nomsclients);
 
 
         });
@@ -236,7 +235,7 @@ private getDismissReason(reason: any): string {
   }
 }
 
-  formatter = (result: string) => result.toUpperCase();
+/*   formatter = (result: string) => result.toUpperCase();
 
   search = (text$: Observable<string>) =>
     text$.pipe(
@@ -244,6 +243,6 @@ private getDismissReason(reason: any): string {
       distinctUntilChanged(),
       map(term => term === '' ? []
         : this.nomsclients.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+    ) */
 
 }

@@ -8,8 +8,8 @@ import { Pagament } from 'src/app/models/pagament.model';
 import { PagamentService } from '../../services/pagament/pagament.service';
 import { ModalUploadService } from '../../component/modal-upload/modal-upload.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 
-import swal from 'sweetalert2';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -37,18 +37,30 @@ export class FacturaComponent implements OnInit {
     public _facturaService: FacturaService,
     public _clientsService: PersonaService,
     public router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    config: NgbDropdownConfig
   ) {
     activatedRoute.params.subscribe( params => {
+    config.placement = 'top-left';
+      config.autoClose = false;
       this.carregant = true;
       this.vid = params['id'];
       this.cargarFactura(this.vid);
+
     });
    }
 
   ngOnInit() {
   }
 
+  canviaEstat( vestat: string) {
+
+    this._facturaService.actualitzaEstat(this.vid, vestat )
+    .subscribe ( xfactura => {
+        console.log(xfactura);
+    });
+
+  }
   cargarFactura( id: string ) {
     this._facturaService.carregarFactura( id )
           .subscribe( factura => {
@@ -78,26 +90,24 @@ export class FacturaComponent implements OnInit {
         .subscribe( resp => {
           console.log(resp);
           console.log('imports actualitzats');
+          if (resp.pendent_pagament === 0 ) {
+            this.canviaEstat('Pagada');
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Factura Pagada!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          } else {
+            console.log('encara no pagada');
+          }
           this._pagamentService.altaPagament(vpago)
           .subscribe( pagament => {
-            console.log(pagament);
-            console.log('alta de pagament realitzat');
             this.cargarFactura(this.vid);
           });
         });
-      // this._facturaService.actualitzar_importsFactra(vpago.import_pagat, this.factura._id)
-      //   .subscribe ( actual => {
-      //     this._pagamentService.altaPagament(vpago)
-      //       .subscribe( pagament => {
-      //         console.log(pagament);
-      //         this._pagamentService.carregarPagamentsFactura(this.vid)
-      //               .subscribe( pagaments => {
-      //                 this.pagaments = pagaments;
-      //                 console.log(pagaments);
-      //               });
-      //         });
 
-      //   });
     } else {
       Swal.fire({
         type: 'error',

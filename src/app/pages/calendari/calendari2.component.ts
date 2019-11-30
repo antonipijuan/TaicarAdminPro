@@ -1,5 +1,6 @@
 import { Vehicle } from '../../models/vehicle.model';
 import { VehicleService } from '../../services/service.index';
+import { ColorPickerService, Cmyk } from 'ngx-color-picker';
 
 import {
   Component,
@@ -47,6 +48,10 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+  personal: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
   }
 };
 import { CustomDateFormatter } from './custom-date.formatter.provider';
@@ -66,7 +71,8 @@ export class Calendari2Component implements OnInit {
 
   constructor(private modal: NgbModal,
     public _reservaService: ReservaService,
-    public _vehicleService: VehicleService) {}
+    public _vehicleService: VehicleService,
+    private cpService: ColorPickerService) {}
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   reserves: Reserva[] = [];
@@ -163,7 +169,10 @@ export class Calendari2Component implements OnInit {
         for (const entry of this.reserves) {
 
           if (entry.estat === 'confirmada' || entry.estat === 'facturada') {
-            vcolor = this.obtenirColor(entry.vehicle['color']);
+            // vcolor = this.obtenirColor(entry.vehicle['color']);
+            vcolor = entry.vehicle['color'];
+            colors.personal.primary = vcolor;
+            colors.personal.secondary = vcolor;
           } else {
             vcolor = colors.red;
           }
@@ -172,7 +181,7 @@ export class Calendari2Component implements OnInit {
                   + 'Client:' + entry.pressupost['client'],
             start: startOfDay(new Date(entry.data_inicial)),
             end: endOfDay(new Date(entry.data_final)),
-            color: vcolor,
+            color: colors.personal,
             draggable: true,
             resizable: {
               beforeStart: true,

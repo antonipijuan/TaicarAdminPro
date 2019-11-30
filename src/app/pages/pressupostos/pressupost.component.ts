@@ -290,16 +290,17 @@ export class PressupostComponent implements OnInit {
               'You clicked the button!',
               'success'
             );
-            this._vehiclesService.obtenirPreuTemporada(article.temporada, article.vehicle)
-            .subscribe( (resp2: any) => {
-              article.preu = article.dies * resp2;
-              this.pressupost.detall.push(article);
+            // this._vehiclesService.obtenirPreuTemporada(article.temporada, article.vehicle)
+            // .subscribe( (resp2: any) => {
+            //   article.preu = article.dies * resp2;
+              
+            // });
+            this.pressupost.detall.push(article);
               this.recalcularPreuPRessupost();
               this.article = new PressupostDetall('', '', '', '', '', 0, '', 0, '');
               this.nodisponibles = [];
               console.log(article);
               console.log(this.pressupost);
-            });
             // this._reservaService.guardarReserva(article)
             // .subscribe( (resposta ) => {
             //   console.log(resposta);

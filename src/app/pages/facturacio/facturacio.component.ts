@@ -4,7 +4,7 @@ import { Pressupost } from '../../models/pressupost.model';
 import { FacturaService, PersonaService, PressupostService } from '../../services/service.index';
 import swal from 'sweetalert2';
 import { Factura } from '../../models/factura.model';
-
+import { PaginationInstance } from 'ngx-pagination';
 
 
 @Component({
@@ -16,6 +16,18 @@ export class FacturacioComponent implements OnInit {
 
   clients: Persona[] = [];
   factures: Factura[] = [];
+
+  page = 1;
+  p: number;
+
+  public filter = '';
+  public config: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 15,
+    currentPage: 1
+};
+
+
   constructor(
     public _facturesService: FacturaService,
     public _personesService: PersonaService
