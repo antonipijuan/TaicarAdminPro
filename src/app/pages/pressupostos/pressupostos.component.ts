@@ -35,7 +35,7 @@ export class PressupostosComponent implements OnInit {
   public filter = '';
   public config: PaginationInstance = {
     id: 'advanced',
-    itemsPerPage: 15,
+    itemsPerPage: 10,
     currentPage: 1
 };
   carregant = false;

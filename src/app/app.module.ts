@@ -38,7 +38,6 @@ import { ServiceModule } from './services/service.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
-import { CalendariComponent } from './pages/calendari/calendari.component';
 import { NgbdAlertBasicComponent } from './component/alert/alert.component';
 import { ModalUploadComponent } from './component/modal-upload/modal-upload.component';
 

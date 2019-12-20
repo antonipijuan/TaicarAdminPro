@@ -1,4 +1,4 @@
-<ng-template #modalContent let-close="close">
+<ng-template #modalContent let-close="close" *ngIf="!cargando">
     <div class="modal-header">
         <h5 class="modal-title">Event action occurred</h5>
         <button type="button" class="close">
@@ -30,7 +30,7 @@
     </div>
 </ng-template>
 
-<div class="row text-center">
+<div class="row text-center" *ngIf="!cargando">
     <div class="col-md-4">
         <div class="btn-group">
             <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
@@ -62,7 +62,7 @@
     </div>
 </div>
 <br>
-<div [ngSwitch]="view">
+<div [ngSwitch]="view" *ngIf="!cargando">
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" [refresh]="refresh" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
         (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-month-view>

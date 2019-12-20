@@ -169,27 +169,38 @@ export class Calendari2Component implements OnInit {
         for (const entry of this.reserves) {
 
           if (entry.estat === 'confirmada' || entry.estat === 'facturada') {
+            console.log('Reservada');
             // vcolor = this.obtenirColor(entry.vehicle['color']);
-            vcolor = entry.vehicle['color'];
+            /* vcolor = entry.vehicle['color'];
             colors.personal.primary = vcolor;
-            colors.personal.secondary = vcolor;
+            colors.personal.secondary = vcolor; */
+            //entry.colors.personal = vcolor
           } else {
-            vcolor = colors.red;
+            console.log('No confirmada');
+            /* vcolor = '#cf1020';
+            colors.personal.primary = vcolor;
+            colors.personal.secondary = vcolor; */
           }
+          console.log(colors.personal);
           this.events.push({
             title: 'Reserva:' + entry._id + ' / ' + 'Vehicle:' + entry.vehicle['matricula'] + ' / '
                   + 'Client:' + entry.pressupost['client'],
             start: startOfDay(new Date(entry.data_inicial)),
             end: endOfDay(new Date(entry.data_final)),
+
             color: colors.personal,
             draggable: true,
             resizable: {
               beforeStart: true,
               afterEnd: true
             }
+
           });
           this.refresh.next();
+          console.log(this.events);
+          vcolor = null;
         }
+        this.cargando = false;
       });
   }
 
@@ -234,7 +245,7 @@ export class Calendari2Component implements OnInit {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
-
+/* 
   obtenirColor(color: string) {
 
     switch (color) {
@@ -249,9 +260,9 @@ export class Calendari2Component implements OnInit {
 
       }
 
-  }
+  } */
 
-  addEvent(): void {
+/*   addEvent(): void {
     this.events.push({
       title: 'New event',
       start: startOfDay(new Date()),
@@ -265,7 +276,7 @@ export class Calendari2Component implements OnInit {
     });
     this.refresh.next();
 
-  }
+  } */
 
   close(): void {
 

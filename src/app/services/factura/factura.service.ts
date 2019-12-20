@@ -37,7 +37,7 @@ export class FacturaService {
     console.log(vpressupost);
 
         const factura = new Factura(numfactura, moment().format('YYYY-MM-DD'), moment().add(30, 'days').format('YYYY-MM-DD'),
-          vpressupost.client, null , vpressupost.preu_brut, vpressupost.preu_net, 'vigent', vpressupost.observacions);
+          vpressupost.client, null , vpressupost.preu_brut, vpressupost.descompte , vpressupost.preu_net, 'vigent', vpressupost.observacions);
 
 
       let url = URL_SERVICIOS + '/factura';

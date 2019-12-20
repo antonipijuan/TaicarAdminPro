@@ -39,7 +39,7 @@ export class PressupostComponent implements OnInit {
   // article: PressupostDetall = new PressupostDetall(0, '', '', '', '', 0, '', 0, '');
   // pressupost_detall: PressupostDetall[] = [];
   persona: Persona = new Persona('', '', '', '', '', '', '');
-  pressupost: Pressupost = new Pressupost(0, null, null, null , new Array<PressupostDetall>(), 0, 0, 'vigent', '', '');
+  pressupost: Pressupost = new Pressupost(0, null, null, null , new Array<PressupostDetall>(), 0, 0, 0, 'vigent', '', '');
   detallsaborrar: PressupostDetall[] = [];
 
   esnou: boolean;
@@ -55,6 +55,9 @@ export class PressupostComponent implements OnInit {
   carregant = true;
 
   closeResult: string;
+
+  impdescompte: number;
+  obsdescompte: string;
 
   constructor(
     // private toastr: ToastrService,
@@ -280,9 +283,9 @@ export class PressupostComponent implements OnInit {
             //     message: 'Aquest vehicle està reservat en data ' + item.data + ' inclòs al pressupost:' + item.pressupost
             //   });
             // }
+            // this.article = new PressupostDetall('', '', '', '', '', 0, '', 0, '');
+            // this.nodisponibles = [];
 
-            this.article = new PressupostDetall('', '', '', '', '', 0, '', 0, '');
-            this.nodisponibles = [];
           } else {
 
             Swal.fire(
@@ -290,10 +293,11 @@ export class PressupostComponent implements OnInit {
               'You clicked the button!',
               'success'
             );
+            this.modalService.dismissAll();
             // this._vehiclesService.obtenirPreuTemporada(article.temporada, article.vehicle)
             // .subscribe( (resp2: any) => {
             //   article.preu = article.dies * resp2;
-              
+
             // });
             this.pressupost.detall.push(article);
               this.recalcularPreuPRessupost();
@@ -338,6 +342,14 @@ export class PressupostComponent implements OnInit {
     }
 
     }
+
+    afegirDescompte( vdescompte: number) {
+
+      this.pressupost.descompte = vdescompte;
+
+      this.modalService.dismissAll();
+
+      }
   recalcularPreuPRessupost() {
     let vpreu = 0;
 
@@ -347,7 +359,7 @@ export class PressupostComponent implements OnInit {
     console.log(vpreu);
 
     this.pressupost.preu_brut = vpreu;
-    this.pressupost.preu_net = vpreu + (vpreu * 0.21);
+    this.pressupost.preu_net = vpreu + (vpreu * 0.21) - this.pressupost.descompte;
 
   }
 

@@ -18,7 +18,7 @@ export class PagamentComponent implements OnInit {
   carregant = true;
   factures: Factura[] = [];
   clients: Persona[] = [];
-  vfactura: Factura = new Factura(0, null, null, null, null, 0, 0, 'vigent', '', 0, 0, '');
+  vfactura: Factura = new Factura(0, null, null, null, null, 0, 0, 0, 'vigent', '', 0, 0, '');
   esnou: boolean;
  pagament: Pagament;
  pagaments: Pagament[] = [];
@@ -52,7 +52,7 @@ export class PagamentComponent implements OnInit {
         this.esnou = true;
         this.carregant = false;
         this.pagament = new Pagament('', '', 0, '', '');
-        this.vfactura = new Factura(0, null, null, null, null, 0, 0, 'vigent', '', 0, 0, '');
+        this.vfactura = new Factura(0, null, null, null, null, 0, 0, 0, 'vigent', '', 0, 0, '');
         console.log(this.esnou);
 
 

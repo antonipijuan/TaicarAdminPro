@@ -67,6 +67,7 @@
                     <div class="pull-right m-t-30 text-right">
                         <p>Sub - Total factura: {{factura.preu_brut}}</p>
                         <p>vat (21%) : {{ (factura.preu_brut * 21)/100 }} </p>
+                        <p>Descompte(*) : {{ factura.descompte }} </p>
                         <hr>
                         <h3><b>Total :</b> {{ factura.preu_net }}</h3>
                     </div>

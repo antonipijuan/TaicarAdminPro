@@ -44,6 +44,7 @@
                         <div class="col-md-12">
                             <div class="table-responsive m-t-40" style="clear: both;">
                                 <button *ngIf="pressupost.estat=='vigent'" class="btn btn-rounded btn-success m-t-10 font-14" (click)="open(content)">Afegeix Reserva</button>
+                                <button *ngIf="pressupost.estat=='vigent'" class="btn btn-rounded btn-success m-t-10 font-14" (click)="open(descontmodal)">Afegeix descompte</button>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -77,6 +78,7 @@
                         <div class="col-md-12 ">
                             <div class="pull-right m-t-30 text-right ">
                                 <p>Sub - Total brut: {{ pressupost.preu_brut }}</p>
+                                <p>Descompte: {{ pressupost.descompte }}</p>
                                 <p>IVA (21%) : {{ pressupost.preu_brut * 0.21 }} </p>
                                 <hr>
                                 <h3><b>Total :</b> {{ pressupost.preu_net }}</h3>
@@ -84,20 +86,22 @@
                             <div class="clearfix"></div>
                             <hr>
                             <div class="col text-right">
+                                <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
+                                <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
                                 <div *ngIf="!esnou" ngbDropdown>
                                     <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Toggle</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownConfig">
                                         <button *ngIf="pressupost.estat=='vigent'" ngbDropdownItem (click)="confirmarPressupost(pressupost)">Confirma</button>
                                         <button *ngIf="pressupost.estat=='vigent'" ngbDropdownItem (click)="anulaPressupost(pressupost)">Anula</button>
+                                        <button *ngIf="pressupost.estat=='vigent'" (click)="recalcularPreuPRessupost()" class="dropdown-item">Recalcula</button>
                                         <button *ngIf="pressupost.estat=='vigent' || pressupost.estat=='confirmat'" (click)="facturarPressupost(pressupost)" class="dropdown-item">Factura</button>
                                     </div>
-                                    <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
+                                    <!-- <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
                                     <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
-                                    <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button>
+                                    <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button> -->
                                 </div>
-                                <!--                                 <button *ngIf="pressupost.estat=='vigent'" class="btn btn-success" [disabled]="pressuForm.invalid" (click)="guardaPressupost(pressupost)" type="button"> Guarda </button>
-                                <button class="btn btn-warning" type="button" (click)="cancelaOrdre()"> Tanca </button>
-                                <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button> -->
+
+                                <!-- <button ngxPrint [useExistingCss]="true" printSectionId="invoice">Print</button> -->
                             </div>
                         </div>
                     </div>
@@ -165,6 +169,32 @@
     </div>
     <div class="modal-footer ">
         <button type="button" class="btn btn-outline-dark" (click)="guardaDetall( article )">Save</button>
+        <button type="button" class="btn btn-light" (click)="modal.close( 'Close click')">Close</button>
+
+    </div>
+</ng-template>
+<ng-template #descontmodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Descomtpe</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss( 'Cross click') ">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal m-t-40" #hero2Form="ngForm" ngNativeValidate (ngSubmit)="afegirDescompte( impdescompte )">
+
+            <div class="form-group">
+                <label>Preu </label>
+                <input type="number" [(ngModel)]="impdescompte" name="impdescompte" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Observacions</label>
+                <textarea class="form-control" [(ngModel)]="obsdescompte" name="obsdescompte" rows="5 "></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="btn btn-outline-dark" (click)="afegirDescompte( impdescompte )">Guarda</button>
         <button type="button" class="btn btn-light" (click)="modal.close( 'Close click')">Close</button>
 
     </div>

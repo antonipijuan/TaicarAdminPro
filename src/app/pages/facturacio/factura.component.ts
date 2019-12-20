@@ -25,7 +25,7 @@ export class FacturaComponent implements OnInit {
   pagament: Pagament;
 
   pagaments: Pagament[] = [];
-  factura: Factura = new Factura(0, '', '', null, null, 0, 0, 'vigent', '');
+  factura: Factura = new Factura(0, '', '', null, null, 0, 0, 0, 'vigent', '');
   factures_detall: FacturaDetall[] = [];
   vid: string;
   carregant = true;

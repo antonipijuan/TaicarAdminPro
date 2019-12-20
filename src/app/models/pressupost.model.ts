@@ -11,6 +11,7 @@ export class Pressupost {
         public client: Persona,
         public detall: PressupostDetall[],
         public preu_brut: number,
+        public descompte: number,
         public preu_net: number,
         public estat: string,
         public observacions?: string,

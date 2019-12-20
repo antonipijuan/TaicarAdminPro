@@ -14,7 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import { CalendarHeaderComponent } from './calendari/calendari-header.component';
+// import { CalendarHeaderComponent } from './calendari/calendari-header.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import localEs from '@angular/common/locales/es';
@@ -42,7 +42,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 // import { RxjsComponent } from './rxjs/rxjs.component';
 // import { ProfileComponent } from './profile/profile.component';
 // import { UsuariosComponent } from './usuarios/usuarios.component';
-import { CalendariComponent } from './calendari/calendari.component';
+//import { CalendariComponent } from './calendari/calendari.component';
 import { Calendari2Component } from './calendari/calendari2.component';
 // import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 // import { HospitalesComponent } from './hospitales/hospitales.component';
@@ -232,9 +232,9 @@ const routes: Routes = [
         DashboardComponent,
         PressupostosComponent,
         UsuariosComponent,
-        CalendariComponent,
+        // CalendariComponent,
         Calendari2Component,
-        CalendarHeaderComponent,
+        // CalendarHeaderComponent,
         // PagesComponent,
         // DashboardComponent,
         // ProgressComponent,
@@ -271,8 +271,8 @@ const routes: Routes = [
         ProfileComponent
     ],
     exports: [
-        Calendari2Component,
-        CalendarHeaderComponent
+        // Calendari2Component,
+        // CalendarHeaderComponent
         // DashboardComponent,
         // ProgressComponent,
         // Graficas1Component

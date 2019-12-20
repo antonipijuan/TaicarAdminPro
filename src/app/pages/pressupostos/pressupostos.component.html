@@ -49,6 +49,9 @@
                     <input type="checkbox" (change)="changed($event)" class="custom-control-input" id="checkbox0" value="check">
                     <label class="custom-control-label" for="checkbox0">Visualitza tots els pressupostos</label>
                 </div>
+                <div class="text-right">
+                    <input id="typeahead-basic" type="text" class="form-control" placeholder="filter" [(ngModel)]="filter">
+                </div>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -61,7 +64,7 @@
                     </thead>
                     <tbody>
 
-                        <tr *ngFor="let pressupost of pressupostos | stringFilter: filter | paginate: { itemsPerPage: 15, currentPage: p }">
+                        <tr *ngFor="let pressupost of pressupostos | stringFilter: filter | paginate: { itemsPerPage: 10, currentPage: p }">
                             <td>
                                 {{ pressupost.num }}
                             </td>
